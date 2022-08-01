@@ -7,8 +7,6 @@
 <p>    点击下载PDF👉<a href="">PDF下载</a></p>
 <span id="more"></span>
 
-
-
 <h1 id="切换目录：cd"><a href="#切换目录：cd" class="headerlink" title="切换目录：cd"></a>切换目录：cd</h1><h2 id="cd命令格式"><a href="#cd命令格式" class="headerlink" title="cd命令格式"></a>cd命令格式</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd [目录路径]</span><br></pre></td></tr></table></figure>
 
 <h2 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h2><p><strong>[目录路径]</strong> 可以是绝对路径也可以是相对路径，常见的相对路径有：</p>
@@ -22,8 +20,6 @@
 </ul>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd ./[目录路径]</span><br><span class="line">cd ../[目录路径]</span><br><span class="line">cd ~/[目录路径]</span><br></pre></td></tr></table></figure>
 
-
-
 <h1 id="查询当前目录路径：pwd"><a href="#查询当前目录路径：pwd" class="headerlink" title="查询当前目录路径：pwd"></a>查询当前目录路径：pwd</h1><blockquote>
 <p>这是一个相当常用的命令，一般在写配置文件时常常要指定一个目录或者文件。</p>
 <p>所以，会在写文件时候提前wpd显示目录路径进行复制。</p>
@@ -32,34 +28,13 @@
 
 <h2 id="拓展-1"><a href="#拓展-1" class="headerlink" title="拓展"></a>拓展</h2><p>在<em>终端</em>中的<u><strong>复制</strong></u>快捷键是：Ctrl + Shift + C</p>
 <p>在<em>终端</em>中的<strong>粘贴</strong>快捷键是：Ctrl + Shift + V</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">fun</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;hi&quot;</span>)</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>IT知识</category>
       </categories>
       <tags>
         <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>first</title>
-    <url>/first/</url>
-    <content><![CDATA[<p>llllllll</p>
-<span id="more"></span>
-
-<p><img src="/../image/2022-07-26-22-57-50-image.png"></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">fun</span>():</span><br><span class="line">    <span class="built_in">print</span>()</span><br></pre></td></tr></table></figure>
-
-<p><a href="https://cn.bing.com/translator?ref=TThis&from=en&to=zh-Hans&isTTRefreshQuery=1">Bing Microsoft Translator - 从英语翻译到中文 (简体)</a></p>
-<h2 id="标题二"><a href="#标题二" class="headerlink" title="标题二"></a>标题二</h2><p>正文</p>
-<p><a href="http://120.77.79.164/data/t.pdf">点击下载</a></p>
-]]></content>
-      <categories>
-        <category>c1</category>
-        <category>c1-1</category>
-      </categories>
-      <tags>
-        <tag>t1</tag>
-        <tag>t2</tag>
       </tags>
   </entry>
   <entry>
