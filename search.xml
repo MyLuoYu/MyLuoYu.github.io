@@ -28,7 +28,6 @@
 
 <h2 id="拓展-1"><a href="#拓展-1" class="headerlink" title="拓展"></a>拓展</h2><p>在<em>终端</em>中的<u><strong>复制</strong></u>快捷键是：Ctrl + Shift + C</p>
 <p>在<em>终端</em>中的<strong>粘贴</strong>快捷键是：Ctrl + Shift + V</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">fun</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;hi&quot;</span>)</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>IT知识</category>
