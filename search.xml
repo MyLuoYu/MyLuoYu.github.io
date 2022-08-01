@@ -3,7 +3,42 @@
   <entry>
     <title>Linux常用命令</title>
     <url>/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<p>    本文撰写的目的是为了使刚接触Linux的小白更好的操作使用Linux，以及作为个人的备忘录。文章介绍的命令是本在Linux系统日常使用中常用到的，或者是在服务器上开发所用到的高频率命令。</p>
+<p>    点击下载PDF👉<a href="">PDF下载</a></p>
+<span id="more"></span>
+
+
+
+<h1 id="切换目录：cd"><a href="#切换目录：cd" class="headerlink" title="切换目录：cd"></a>切换目录：cd</h1><h2 id="cd命令格式"><a href="#cd命令格式" class="headerlink" title="cd命令格式"></a>cd命令格式</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd [目录路径]</span><br></pre></td></tr></table></figure>
+
+<h2 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h2><p><strong>[目录路径]</strong> 可以是绝对路径也可以是相对路径，常见的相对路径有：</p>
+<ul>
+<li><p>.&#x2F;    表示当前目录</p>
+</li>
+<li><p>..&#x2F;   表示上一级目录</p>
+</li>
+<li><p>~    表示用户主目录（&#x2F;home&#x2F;user）</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd ./[目录路径]</span><br><span class="line">cd ../[目录路径]</span><br><span class="line">cd ~/[目录路径]</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="查询当前目录路径：pwd"><a href="#查询当前目录路径：pwd" class="headerlink" title="查询当前目录路径：pwd"></a>查询当前目录路径：pwd</h1><blockquote>
+<p>这是一个相当常用的命令，一般在写配置文件时常常要指定一个目录或者文件。</p>
+<p>所以，会在写文件时候提前wpd显示目录路径进行复制。</p>
+</blockquote>
+<h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pwd</span><br></pre></td></tr></table></figure>
+
+<h2 id="拓展-1"><a href="#拓展-1" class="headerlink" title="拓展"></a>拓展</h2><p>在<em>终端</em>中的<u><strong>复制</strong></u>快捷键是：Ctrl + Shift + C</p>
+<p>在<em>终端</em>中的<strong>粘贴</strong>快捷键是：Ctrl + Shift + V</p>
+]]></content>
+      <categories>
+        <category>IT知识</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
   </entry>
   <entry>
     <title>first</title>
