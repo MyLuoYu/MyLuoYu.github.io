@@ -20,14 +20,28 @@
 </ul>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd ./[目录路径]</span><br><span class="line">cd ../[目录路径]</span><br><span class="line">cd ~/[目录路径]</span><br></pre></td></tr></table></figure>
 
-<h1 id="查询当前目录路径：pwd"><a href="#查询当前目录路径：pwd" class="headerlink" title="查询当前目录路径：pwd"></a>查询当前目录路径：pwd</h1><blockquote>
-<p>这是一个相当常用的命令，一般在写配置文件时常常要指定一个目录或者文件。</p>
-<p>所以，会在写文件时候提前wpd显示目录路径进行复制。</p>
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1><h1 id="查询当前目录路径：pwd"><a href="#查询当前目录路径：pwd" class="headerlink" title="查询当前目录路径：pwd"></a>查询当前目录路径：pwd</h1><blockquote>
+<p>这是一个相当常用的命令，一般在写配置文件时常常要指定一个目录或者文件。<br>所以，会在写文件时候提前wpd显示目录路径进行复制。</p>
 </blockquote>
 <h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pwd</span><br></pre></td></tr></table></figure>
 
-<h2 id="拓展-1"><a href="#拓展-1" class="headerlink" title="拓展"></a>拓展</h2><p>在<em>终端</em>中的<u><strong>复制</strong></u>快捷键是：Ctrl + Shift + C</p>
-<p>在<em>终端</em>中的<strong>粘贴</strong>快捷键是：Ctrl + Shift + V</p>
+<h2 id="拓展-1"><a href="#拓展-1" class="headerlink" title="拓展"></a>拓展</h2><p>在<em>终端</em>中的<u><strong>复制</strong></u>快捷键是：Ctrl + Shift + C<br>在<em>终端</em>中的<strong>粘贴</strong>快捷键是：Ctrl + Shift + V</p>
+<h1 id="查询文件命令：ls"><a href="#查询文件命令：ls" class="headerlink" title="查询文件命令：ls"></a>查询文件命令：ls</h1><h2 id="命令格式-1"><a href="#命令格式-1" class="headerlink" title="命令格式"></a>命令格式</h2><p>不加 <strong>[目录路径]</strong> 默认为当前目录</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ls [目录路径]</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../image/2022-08-01-19-19-25-image.png"></p>
+<h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><ul>
+<li>-l：显示所有目录和文件的属性</li>
+</ul>
+<p><img src="/../image/2022-08-01-19-20-03-image.png"></p>
+<ul>
+<li>-a：显示所有目录和文件（包括隐藏目录）</li>
+</ul>
+<p><img src="/../image/2022-08-01-19-20-30-image.png"></p>
+<ul>
+<li>-al：以上两者的结合</li>
+</ul>
+<p><img src="/../image/2022-08-01-19-20-50-image.png"></p>
 ]]></content>
       <categories>
         <category>IT知识</category>
