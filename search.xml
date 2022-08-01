@@ -4,7 +4,7 @@
     <title>Linux常用命令</title>
     <url>/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<p>    本文撰写的目的是为了使刚接触Linux的小白更好的操作使用Linux，以及作为个人的备忘录。文章介绍的命令是本在Linux系统日常使用中常用到的，或者是在服务器上开发所用到的高频率命令。</p>
-<p>    点击下载PDF👉<a href="">PDF下载</a></p>
+<p>    点击下载👉<a href="">PDF下载</a></p>
 <span id="more"></span>
 
 <h1 id="切换目录：cd"><a href="#切换目录：cd" class="headerlink" title="切换目录：cd"></a>切换目录：cd</h1><h2 id="cd命令格式"><a href="#cd命令格式" class="headerlink" title="cd命令格式"></a>cd命令格式</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd [目录路径]</span><br></pre></td></tr></table></figure>
