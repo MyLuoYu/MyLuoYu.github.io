@@ -20,16 +20,16 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="安装manjaro i3其实是i3-gaps,i3wm的加强版,主要能使窗口间有间隔！而且下载完整版安装很多软件及配置，快捷键都默认设置好了  。系统镜像在官网下载的社区版本manjaro+i3 ISO镜像下载下载网址：https:&#x2F;&#x2F;manjaro.org&#x2F;download&#x2F;  刻录U盘下载U盘刻录工具Rufus下载地址：https:&#x2F;&#x2F;rufus.en.softonic.com&#x2F; Rufus使">
+    <meta name="description" content="详细介绍Manjaro系统的i3wm桌面环境的安装与踩坑。     点击下载👉PDF下载">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Manjaro-i3wm安装">
 <meta property="og:url" content="http://example.com/Manjaro-i3wm%E5%AE%89%E8%A3%85/index.html">
 <meta property="og:site_name" content="长梦">
-<meta property="og:description" content="安装manjaro i3其实是i3-gaps,i3wm的加强版,主要能使窗口间有间隔！而且下载完整版安装很多软件及配置，快捷键都默认设置好了  。系统镜像在官网下载的社区版本manjaro+i3 ISO镜像下载下载网址：https:&#x2F;&#x2F;manjaro.org&#x2F;download&#x2F;  刻录U盘下载U盘刻录工具Rufus下载地址：https:&#x2F;&#x2F;rufus.en.softonic.com&#x2F; Rufus使">
+<meta property="og:description" content="详细介绍Manjaro系统的i3wm桌面环境的安装与踩坑。     点击下载👉PDF下载">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/Manjaro-i3wm%E5%AE%89%E8%A3%85/2022-08-13-21-01-55-image.png">
 <meta property="article:published_time" content="2022-08-13T12:42:59.000Z">
-<meta property="article:modified_time" content="2022-08-13T13:10:23.448Z">
+<meta property="article:modified_time" content="2022-08-13T13:17:33.872Z">
 <meta property="article:author" content="长梦">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
@@ -249,7 +249,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2022-08-13 20:42:59 / 修改时间：21:10:23" itemprop="dateCreated datePublished" datetime="2022-08-13T20:42:59+08:00">2022-08-13</time>
+      <time title="创建时间：2022-08-13 20:42:59 / 修改时间：21:17:33" itemprop="dateCreated datePublished" datetime="2022-08-13T20:42:59+08:00">2022-08-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -271,7 +271,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>manjaro i3其实是i3-gaps,i3wm的加强版,主要能使窗口间有间隔！而且下载完整版安装很多软件及配置，快捷键都默认设置好了  。<br>系统镜像在官网下载的社区版本manjaro+i3</p>
+        <p>    详细介绍Manjaro系统的i3wm桌面环境的安装与踩坑。</p>
+<p>    点击下载👉<a href="">PDF下载</a></p>
+<span id="more"></span>
+
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>manjaro i3其实是i3-gaps,i3wm的加强版,主要能使窗口间有间隔！而且下载完整版安装很多软件及配置，快捷键都默认设置好了  。<br>系统镜像在官网下载的社区版本manjaro+i3</p>
 <h2 id="ISO镜像下载"><a href="#ISO镜像下载" class="headerlink" title="ISO镜像下载"></a>ISO镜像下载</h2><p><a target="_blank" rel="noopener" href="https://manjaro.org/download/">下载网址</a>：<a target="_blank" rel="noopener" href="https://manjaro.org/download/">https://manjaro.org/download/</a></p>
 <p><img src="/Manjaro-i3wm%E5%AE%89%E8%A3%85/2022-08-13-21-01-55-image.png"></p>
 <h2 id="刻录U盘"><a href="#刻录U盘" class="headerlink" title="刻录U盘"></a>刻录U盘</h2><h3 id="下载U盘刻录工具Rufus"><a href="#下载U盘刻录工具Rufus" class="headerlink" title="下载U盘刻录工具Rufus"></a>下载U盘刻录工具Rufus</h3><p><a target="_blank" rel="noopener" href="https://rufus.en.softonic.com/">下载地址</a>：<a target="_blank" rel="noopener" href="https://rufus.en.softonic.com/">https://rufus.en.softonic.com/</a></p>
