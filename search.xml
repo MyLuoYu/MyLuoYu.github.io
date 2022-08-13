@@ -18,9 +18,9 @@
 <li><p>~    表示用户主目录（&#x2F;home&#x2F;user）</p>
 </li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd ./[目录路径]</span><br><span class="line">cd ../[目录路径]</span><br><span class="line">cd ~/[目录路径]</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd ./[目录路径]</span><br><span class="line">cd ../[目录路径]</span><br><span class="line">cd ~/[目录路径] </span><br></pre></td></tr></table></figure>
 
-<h1 id=""><a href="#" class="headerlink" title=""></a></h1><h1 id="查询当前目录路径：pwd"><a href="#查询当前目录路径：pwd" class="headerlink" title="查询当前目录路径：pwd"></a>查询当前目录路径：pwd</h1><blockquote>
+<h1 id="查询当前目录路径：pwd"><a href="#查询当前目录路径：pwd" class="headerlink" title="查询当前目录路径：pwd"></a>查询当前目录路径：pwd</h1><blockquote>
 <p>这是一个相当常用的命令，一般在写配置文件时常常要指定一个目录或者文件。<br>所以，会在写文件时候提前wpd显示目录路径进行复制。</p>
 </blockquote>
 <h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pwd</span><br></pre></td></tr></table></figure>
@@ -69,5 +69,10 @@
       <tags>
         <tag>t3</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Manjaro-i3wm安装</title>
+    <url>/Manjaro-i3wm%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[]]></content>
   </entry>
 </search>
