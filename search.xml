@@ -73,6 +73,16 @@
   <entry>
     <title>Manjaro-i3wm安装</title>
     <url>/Manjaro-i3wm%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>manjaro i3其实是i3-gaps,i3wm的加强版,主要能使窗口间有间隔！而且下载完整版安装很多软件及配置，快捷键都默认设置好了  。<br>系统镜像在官网下载的社区版本manjaro+i3</p>
+<h2 id="ISO镜像下载"><a href="#ISO镜像下载" class="headerlink" title="ISO镜像下载"></a>ISO镜像下载</h2><p><a href="https://manjaro.org/download/">下载网址</a>：<a href="https://manjaro.org/download/">https://manjaro.org/download/</a></p>
+<p><img src="/Manjaro-i3wm%E5%AE%89%E8%A3%85/2022-08-13-21-01-55-image.png"></p>
+<h2 id="刻录U盘"><a href="#刻录U盘" class="headerlink" title="刻录U盘"></a>刻录U盘</h2><h3 id="下载U盘刻录工具Rufus"><a href="#下载U盘刻录工具Rufus" class="headerlink" title="下载U盘刻录工具Rufus"></a>下载U盘刻录工具Rufus</h3><p><a href="https://rufus.en.softonic.com/">下载地址</a>：<a href="https://rufus.en.softonic.com/">https://rufus.en.softonic.com/</a></p>
+<h3 id="Rufus使用"><a href="#Rufus使用" class="headerlink" title="Rufus使用"></a>Rufus使用</h3><h2 id="进入BIOS启动安装程序"><a href="#进入BIOS启动安装程序" class="headerlink" title="进入BIOS启动安装程序"></a>进入BIOS启动安装程序</h2><h2 id="安装Manjaro"><a href="#安装Manjaro" class="headerlink" title="安装Manjaro"></a>安装Manjaro</h2>]]></content>
+      <categories>
+        <category>IT知识</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
   </entry>
 </search>
