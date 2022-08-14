@@ -27,17 +27,17 @@
 <meta property="og:site_name" content="长梦">
 <meta property="og:description" content="使用Linux（manjaro）系统，从虚拟机开始搭建Hadoop平台以及Hadoop的调优。内容简单详细     点击下载👉PDF下载">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/home/luo/%E6%96%87%E6%A1%A3/Learning_Documents/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Hadoop/2022-01-16_16-03.png">
-<meta property="og:image" content="http://example.com/home/luo/%E6%96%87%E6%A1%A3/Learning_Documents/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Hadoop/2022-01-24_15-36.png">
-<meta property="og:image" content="http://example.com/home/luo/%E6%96%87%E6%A1%A3/Learning_Documents/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Hadoop/2022-01-24_17-26.png">
+<meta property="og:image" content="http://example.com/Hadoop%E6%90%AD%E5%BB%BA%E8%B0%83%E4%BC%98%E7%AC%94%E8%AE%B0/2022-01-16_16-03.png">
+<meta property="og:image" content="http://example.com/Hadoop%E6%90%AD%E5%BB%BA%E8%B0%83%E4%BC%98%E7%AC%94%E8%AE%B0/2022-01-24_15-36.png">
+<meta property="og:image" content="http://example.com/Hadoop%E6%90%AD%E5%BB%BA%E8%B0%83%E4%BC%98%E7%AC%94%E8%AE%B0/2022-01-24_17-26.png">
 <meta property="article:published_time" content="2022-08-14T14:50:52.000Z">
-<meta property="article:modified_time" content="2022-08-14T14:56:41.880Z">
+<meta property="article:modified_time" content="2022-08-14T15:35:41.482Z">
 <meta property="article:author" content="长梦">
 <meta property="article:tag" content="大数据">
 <meta property="article:tag" content="搭建平台">
 <meta property="article:tag" content="基础知识">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/home/luo/%E6%96%87%E6%A1%A3/Learning_Documents/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Hadoop/2022-01-16_16-03.png">
+<meta name="twitter:image" content="http://example.com/Hadoop%E6%90%AD%E5%BB%BA%E8%B0%83%E4%BC%98%E7%AC%94%E8%AE%B0/2022-01-16_16-03.png">
 
 
 <link rel="canonical" href="http://example.com/Hadoop%E6%90%AD%E5%BB%BA%E8%B0%83%E4%BC%98%E7%AC%94%E8%AE%B0/">
@@ -253,7 +253,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2022-08-14 22:50:52 / 修改时间：22:56:41" itemprop="dateCreated datePublished" datetime="2022-08-14T22:50:52+08:00">2022-08-14</time>
+      <time title="创建时间：2022-08-14 22:50:52 / 修改时间：23:35:41" itemprop="dateCreated datePublished" datetime="2022-08-14T22:50:52+08:00">2022-08-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -295,7 +295,7 @@
 <blockquote>
 <p>修改&#x2F;etc&#x2F;sudoers文件，在%wheel这行下面添加一行，如下所示：</p>
 </blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">## Allow root to run any commands anywhere</span><br><span class="line">root    ALL=(ALL)     ALL</span><br><span class="line"></span><br><span class="line">## Allows people in group wheel to run all commands</span><br><span class="line">%wheel  ALL=(ALL)       ALL</span><br><span class="line">luo   ALL=(ALL)     NOPASSWD:ALL</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Allow root to run any commands anywhere</span></span><br><span class="line">root    ALL=(ALL)     ALL</span><br><span class="line"></span><br><span class="line"><span class="comment">## Allows people in group wheel to run all commands</span></span><br><span class="line">%wheel  ALL=(ALL)       ALL</span><br><span class="line">luo   ALL=(ALL)     NOPASSWD:ALL</span><br></pre></td></tr></table></figure>
 
 <h4 id="下载vim、net-tools、rsync"><a href="#下载vim、net-tools、rsync" class="headerlink" title="下载vim、net-tools、rsync"></a>下载vim、net-tools、rsync</h4><blockquote>
 <p>vim用于编写文件</p>
@@ -471,7 +471,7 @@
 <li>ReduceTask 向 MapTask 获取相应分区的数据。</li>
 <li>程序运行完毕后，MR 会向 RM 申请注销自己。</li>
 </ul>
-<h4 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h4><p><img src="/home/luo/%E6%96%87%E6%A1%A3/Learning_Documents/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Hadoop/2022-01-16_16-03.png" alt="2022-01-16_16-03"></p>
+<h4 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h4><p><img src="/Hadoop%E6%90%AD%E5%BB%BA%E8%B0%83%E4%BC%98%E7%AC%94%E8%AE%B0/2022-01-16_16-03.png" alt="2022-01-16_16-03"></p>
 <h3 id="Yarn核心参数配置"><a href="#Yarn核心参数配置" class="headerlink" title="Yarn核心参数配置"></a>Yarn核心参数配置</h3><blockquote>
 <p>根据服务器的具体情况进行添加yarn-site.xml的配置</p>
 </blockquote>
@@ -794,7 +794,7 @@
 </ul>
 </li>
 </ol>
-<h4 id="MapReduce-常用调优参数"><a href="#MapReduce-常用调优参数" class="headerlink" title="MapReduce 常用调优参数"></a>MapReduce 常用调优参数</h4><h5 id="Map——-gt-Shuffle"><a href="#Map——-gt-Shuffle" class="headerlink" title="Map——&gt;Shuffle"></a>Map——&gt;Shuffle</h5><p><img src="/home/luo/%E6%96%87%E6%A1%A3/Learning_Documents/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Hadoop/2022-01-24_15-36.png"></p>
+<h4 id="MapReduce-常用调优参数"><a href="#MapReduce-常用调优参数" class="headerlink" title="MapReduce 常用调优参数"></a>MapReduce 常用调优参数</h4><h5 id="Map——-gt-Shuffle"><a href="#Map——-gt-Shuffle" class="headerlink" title="Map——&gt;Shuffle"></a>Map——&gt;Shuffle</h5><p><img src="/Hadoop%E6%90%AD%E5%BB%BA%E8%B0%83%E4%BC%98%E7%AC%94%E8%AE%B0/2022-01-24_15-36.png"></p>
 <h6 id="自定义分区，减少数据倾斜"><a href="#自定义分区，减少数据倾斜" class="headerlink" title="自定义分区，减少数据倾斜"></a>自定义分区，减少数据倾斜</h6><p>   定义类，继承Partitioner接口，重写getPartition方法</p>
 <h6 id="减少溢写的次数"><a href="#减少溢写的次数" class="headerlink" title="减少溢写的次数"></a>减少溢写的次数</h6><ul>
 <li>mapreduce.task.io.sort.mb Shuffle的环形缓冲区大小，默认100m，可以提高到200m </li>
@@ -816,7 +816,7 @@
 <h6 id="控制MapTask堆内存大小"><a href="#控制MapTask堆内存大小" class="headerlink" title="控制MapTask堆内存大小"></a>控制MapTask堆内存大小</h6><p>   mapreduce.map.java.opts：控制MapTask堆内存大小。（如果内存不够， 报：java.lang.OutOfMemoryError）</p>
 <h6 id="增加MapTask的CPU核数"><a href="#增加MapTask的CPU核数" class="headerlink" title="增加MapTask的CPU核数"></a>增加MapTask的CPU核数</h6><p>   mapreduce.map.cpu.vcores 默认MapTask的CPU核数1。计算密集型任 务可以增加CPU核数</p>
 <h6 id="异常重试"><a href="#异常重试" class="headerlink" title="异常重试"></a>异常重试</h6><p>   mapreduce.map.maxattempts每个Map Task最大重试次数，一旦重试 次数超过该值，则认为Map Task运行失败，默认值：4。根据机器 性能适当提高。</p>
-<h5 id="Shuffle——-gt-Reduce"><a href="#Shuffle——-gt-Reduce" class="headerlink" title="Shuffle——&gt;Reduce"></a>Shuffle——&gt;Reduce</h5><p><img src="/home/luo/%E6%96%87%E6%A1%A3/Learning_Documents/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Hadoop/2022-01-24_17-26.png"></p>
+<h5 id="Shuffle——-gt-Reduce"><a href="#Shuffle——-gt-Reduce" class="headerlink" title="Shuffle——&gt;Reduce"></a>Shuffle——&gt;Reduce</h5><p><img src="/Hadoop%E6%90%AD%E5%BB%BA%E8%B0%83%E4%BC%98%E7%AC%94%E8%AE%B0/2022-01-24_17-26.png"></p>
 <ul>
 <li>mapreduce.reduce.shuffle.parallelcopies每个Reduce去Map 中拉取数据的并行数，默认值是5。可以提高到10。</li>
 <li>mapreduce.reduce.shuffle.input.buffer.percent Buffer大小占Reduce可用内存的比例，默认值0.7。可以提高到0.8</li>
