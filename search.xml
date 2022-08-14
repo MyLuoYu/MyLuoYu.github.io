@@ -7,7 +7,7 @@
 <p>    点击下载👉<a href="">PDF下载</a></p>
 <span id="more"></span>
 
-<h1 id="切换目录：cd"><a href="#切换目录：cd" class="headerlink" title="切换目录：cd"></a>切换目录：cd</h1><h2 id="cd命令格式"><a href="#cd命令格式" class="headerlink" title="cd命令格式"></a>cd命令格式</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd [目录路径]</span><br></pre></td></tr></table></figure>
+<h1 id="切换目录：cd"><a href="#切换目录：cd" class="headerlink" title="切换目录：cd"></a>切换目录：cd</h1><h2 id="cd命令格式"><a href="#cd命令格式" class="headerlink" title="cd命令格式"></a>cd命令格式</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> [目录路径]</span><br></pre></td></tr></table></figure>
 
 <h2 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h2><p><strong>[目录路径]</strong> 可以是绝对路径也可以是相对路径，常见的相对路径有：</p>
 <ul>
@@ -17,24 +17,106 @@
 </li>
 <li><p>~    表示用户主目录（&#x2F;home&#x2F;user）</p>
 </li>
+<li><p>-    表示上一次工作路径</p>
+</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd ./[目录路径]</span><br><span class="line">cd ../[目录路径]</span><br><span class="line">cd ~/[目录路径] </span><br></pre></td></tr></table></figure>
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><p>进入根目录</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /</span><br></pre></td></tr></table></figure>
+
+<p>进入 “home” 目录</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line"><span class="built_in">cd</span></span><br></pre></td></tr></table></figure>
+
+<p>进入上一次工作路径</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> -</span><br></pre></td></tr></table></figure>
+
+<p>进入上一级目录</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ../</span><br></pre></td></tr></table></figure>
 
 <h1 id="查询当前目录路径：pwd"><a href="#查询当前目录路径：pwd" class="headerlink" title="查询当前目录路径：pwd"></a>查询当前目录路径：pwd</h1><blockquote>
 <p>这是一个相当常用的命令，一般在写配置文件时常常要指定一个目录或者文件。<br>所以，会在写文件时候提前wpd显示目录路径进行复制。</p>
 </blockquote>
-<h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pwd</span><br></pre></td></tr></table></figure>
+<h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">pwd</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="拓展-1"><a href="#拓展-1" class="headerlink" title="拓展"></a>拓展</h2><p>在<em>终端</em>中的<u><strong>复制</strong></u>快捷键是：Ctrl + Shift + C<br>在<em>终端</em>中的<strong>粘贴</strong>快捷键是：Ctrl + Shift + V</p>
 <h1 id="查询文件命令：ls"><a href="#查询文件命令：ls" class="headerlink" title="查询文件命令：ls"></a>查询文件命令：ls</h1><h2 id="命令格式-1"><a href="#命令格式-1" class="headerlink" title="命令格式"></a>命令格式</h2><p>不加 <strong>[目录路径]</strong> 默认为当前目录</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ls [目录路径]</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">ls</span> [目录路径]</span><br></pre></td></tr></table></figure>
 
 <h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><ul>
-<li>-l：显示所有目录和文件的属性</li>
-<li>-a：显示所有目录和文件（包括隐藏目录）</li>
-<li>-al：以上两者的结合</li>
+<li><strong>-l</strong>：除了文件名之外，还将文件的权限、所有者、文件大小等信息详细列出来</li>
+<li><strong>-a</strong>：显示所有目录和文件（包括隐藏目录）</li>
+<li><strong>-A</strong>：列出除.及..的其它文件</li>
+<li><strong>-r</strong>：反序排列</li>
+<li><strong>-S</strong>：以文件大小排序</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ls -l</span><br><span class="line">ls -a</span><br><span class="line">ls -al</span><br></pre></td></tr></table></figure>
+<h2 id="案例-1"><a href="#案例-1" class="headerlink" title="案例"></a>案例</h2><p>按大小反序显示文件详细信息</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">ls</span> -lrS</span><br></pre></td></tr></table></figure>
+
+<p>按修改时间反序排序，并显示文件详细信息</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">ls</span> -lrt</span><br></pre></td></tr></table></figure>
+
+<p>列出当前目录中所有以”t”开头的目录的详细内容</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">ls</span> -l t*</span><br></pre></td></tr></table></figure>
+
+<p>列出文件绝对路径（不包含隐藏文件）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">ls</span> | sed <span class="string">&quot;s:^:`pwd`/:&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="创建目录-文件夹-：mkdir"><a href="#创建目录-文件夹-：mkdir" class="headerlink" title="创建目录(文件夹)：mkdir"></a>创建目录(文件夹)：mkdir</h1><h2 id="命令格式-2"><a href="#命令格式-2" class="headerlink" title="命令格式"></a>命令格式</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> [参数] [目录名]</span><br></pre></td></tr></table></figure>
+
+<h2 id="参数-1"><a href="#参数-1" class="headerlink" title="参数"></a>参数</h2><ul>
+<li><strong>-m</strong>   ：对新建目录设置存取权限，也可以用 chmod 命令设置</li>
+<li><strong>-p</strong>    ：可以是一个路径名称。此时若路径中的某些目录尚不存在,加上此选项后，系统将自动建立好那些尚不在的目录，即一次可以建立多个目录。</li>
+</ul>
+<h2 id="案例-2"><a href="#案例-2" class="headerlink" title="案例"></a>案例</h2><p>当前工作目录下创建名为 t的文件夹</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> t</span><br></pre></td></tr></table></figure>
+
+<p>在 tmp 目录下创建路径为 test&#x2F;t1&#x2F;t 的目录，若不存在，则创建</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /tmp/test/t1/t</span><br></pre></td></tr></table></figure>
+
+<h1 id="删除命令：rm"><a href="#删除命令：rm" class="headerlink" title="删除命令：rm"></a>删除命令：rm</h1><h2 id="命令格式-3"><a href="#命令格式-3" class="headerlink" title="命令格式"></a>命令格式</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">rm</span> [选项] 文件(目录)…</span><br></pre></td></tr></table></figure>
+
+<h2 id="参数-2"><a href="#参数-2" class="headerlink" title="参数"></a>参数</h2><ul>
+<li><p><strong>-r</strong>    ：删除一个目录中的一个或多个文件或目录，如果没有使用 -r 选项，则 rm 不会删除目</p>
+</li>
+<li><p><strong>-i</strong>    ：删除任何文件，删除前逐一询问确认</p>
+</li>
+<li><p><strong>-rf</strong>    ：删除子目录及子目录中所有档案删除，并且不用确认</p>
+</li>
+</ul>
+<h2 id="案例-3"><a href="#案例-3" class="headerlink" title="案例"></a>案例</h2><p>删除任何 .log结尾的文件，删除前逐一询问确认</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">rm</span> -i *.<span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+
+<p>删除 test 子目录及子目录中所有档案删除，并且不用一一确认：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">rm</span> -rf <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+<p>删除以 -f 开头的文件</p>
+<blockquote>
+<p>文件（目录）以 “-”开头会让命令误认为是参数，所以加上“–“进行分隔</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">rm</span> -- -f*</span><br></pre></td></tr></table></figure>
+
+<h1 id="移动-重命名-：mv"><a href="#移动-重命名-：mv" class="headerlink" title="移动(重命名)：mv"></a>移动(重命名)：mv</h1><blockquote>
+<p>移动文件或修改文件名，根据第二参数类型（如目录，则移动文件；如为文件则重命令该文件）。</p>
+<p>当第二个参数为目录时，第一个参数可以是多个以空格分隔的文件或目录，然后移动第一个参数指定的多个文件到第二个参数指定的目录中。</p>
+</blockquote>
+<h2 id="命令格式-4"><a href="#命令格式-4" class="headerlink" title="命令格式"></a>命令格式</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mv</span> [文件(目录)] [文件(目录)]</span><br></pre></td></tr></table></figure>
+
+<h2 id="参数-3"><a href="#参数-3" class="headerlink" title="参数"></a>参数</h2><ul>
+<li><strong>-i</strong>    :是否询问覆盖</li>
+</ul>
+<h2 id="案例-4"><a href="#案例-4" class="headerlink" title="案例"></a>案例</h2><p>将文件 test.log 重命名为 test1.txt</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mv</span> test.log test1.txt</span><br></pre></td></tr></table></figure>
+
+<p>将文件 log1.txt,log2.txt,log3.txt 移动到根的 test3 目录中</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mv</span> llog1.txt log2.txt log3.txt /test3</span><br></pre></td></tr></table></figure>
+
+<p>将文件 file1 改名为 file2，如果 file2 已经存在，则询问是否覆盖</p>
+<blockquote>
+<p>不加参数-i则强制覆盖</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mv</span> -i log1.txt log2.txt</span><br></pre></td></tr></table></figure>
+
+<p>移动当前文件夹下的所有文件到上一级目录</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mv</span> * ../</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>IT知识</category>
