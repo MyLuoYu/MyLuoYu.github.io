@@ -4,7 +4,6 @@
     <title>Linux常用命令</title>
     <url>/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<p>    本文撰写的目的是为了使刚接触Linux的小白更好的操作使用Linux，以及作为个人的备忘录。文章介绍的命令是本在Linux系统日常使用中常用到的，或者是在服务器上开发所用到的高频率命令。</p>
-<p>    点击下载👉<a href="">PDF下载</a></p>
 <span id="more"></span>
 
 <h1 id="切换目录：cd"><a href="#切换目录：cd" class="headerlink" title="切换目录：cd"></a>切换目录：cd</h1><h2 id="cd命令格式"><a href="#cd命令格式" class="headerlink" title="cd命令格式"></a>cd命令格式</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> [目录路径]</span><br></pre></td></tr></table></figure>
@@ -117,6 +116,51 @@
 
 <p>移动当前文件夹下的所有文件到上一级目录</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mv</span> * ../</span><br></pre></td></tr></table></figure>
+
+<h1 id="文件-目录-查找：find"><a href="#文件-目录-查找：find" class="headerlink" title="文件(目录)查找：find"></a>文件(目录)查找：find</h1><blockquote>
+<p>Linux find 命令用来在指定目录下查找文件。任何位于<strong>参数之前</strong>的字符串都将被视为欲查找的目录名。如果使用该命令时，不设置任何参数，则 find 命令将在当前目录下查找子目录与文件。并且将查找到的子目录和文件全部进行显示。</p>
+</blockquote>
+<h2 id="命令格式-5"><a href="#命令格式-5" class="headerlink" title="命令格式"></a>命令格式</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">find   [path]   [-option]  [-expression]</span><br></pre></td></tr></table></figure>
+
+<h2 id="参数-4"><a href="#参数-4" class="headerlink" title="参数"></a>参数</h2><blockquote>
+<p>find 根据下列规则判断 path 和 expression，在命令列上第一个 -option 之前的部份为 path，之后的是 expression。如果 path 是空字串则使用目前路径，如果 expression 是空字串则使用 -print 为预设 expression。</p>
+</blockquote>
+<ul>
+<li><p>-amin n : 在过去 n 分钟内被读取过</p>
+</li>
+<li><p>-atime n : 在过去 n 天内被读取过的文件</p>
+</li>
+<li><p>-cmin n : 在过去 n 分钟内被修改过</p>
+</li>
+<li><p>-mtime n : 在过去 n 天内修改过的文件</p>
+</li>
+<li><p>-ctime n : 在过去 n 天内创建的文件</p>
+</li>
+<li><p>-name [name] : 文件名称符合 [name] 的文件</p>
+</li>
+<li><p>-iname [name] : 文件名称符合 [name] 的文件iname 会忽略大小写</p>
+</li>
+<li><p>-type [type] : 文件类型是 [type] 的文件</p>
+<ul>
+<li><p>c 类型的文件。</p>
+</li>
+<li><p>d: 目录</p>
+</li>
+<li><p>f: 一般文件</p>
+</li>
+<li><p>l: 符号连结</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="案例-5"><a href="#案例-5" class="headerlink" title="案例"></a>案例</h2><p>将当前目录及其子目录下所有文件后缀为 .c 的文件列出来:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">find . -name <span class="string">&quot;*.c&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>将当前目录及其子目录中的所有文件列出：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">find . -<span class="built_in">type</span> f</span><br></pre></td></tr></table></figure>
+
+<p>将当前目录及其子目录下所有最近 20 天内更新过的文件列出:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">find . -ctime 20</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>IT知识</category>
