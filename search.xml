@@ -173,7 +173,6 @@
     <title>Manjaro-i3wm安装</title>
     <url>/Manjaro-i3wm%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[<p>    详细介绍Manjaro系统的i3wm桌面环境的安装与踩坑。</p>
-<p>    点击下载👉<a href="">PDF下载</a></p>
 <span id="more"></span>
 
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>manjaro i3其实是i3-gaps,i3wm的加强版,主要能使窗口间有间隔！而且下载完整版安装很多软件及配置，快捷键都默认设置好了  。<br>系统镜像在官网下载的社区版本manjaro+i3</p>
@@ -793,6 +792,31 @@
         <tag>大数据</tag>
         <tag>搭建平台</tag>
         <tag>基础知识</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>算法:剑指Offer</title>
+    <url>/%E7%AE%97%E6%B3%95-%E5%89%91%E6%8C%87Offer/</url>
+    <content><![CDATA[<p>    力扣算法题：剑指Offer</p>
+<p>    Java版本，算法解析和代码</p>
+<span id="more"></span>
+
+<h1 id="难度：简单"><a href="#难度：简单" class="headerlink" title="难度：简单"></a>难度：简单</h1><h2 id="数组中重复的数字"><a href="#数组中重复的数字" class="headerlink" title="数组中重复的数字"></a>数组中重复的数字</h2><blockquote>
+<p>在一个长度为 n 的数组里的所有数字都在 0 到 n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字是重复的，也不知道每个数字重复几次。请找出数组中任意一个重复的数字。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Input:</span><br><span class="line">&#123;<span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">5</span>&#125;</span><br><span class="line"></span><br><span class="line">Output:</span><br><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>题目只需要找到任意一个重复的数字，因此不需要使用排序的方法，也不需要使用额外的标记数组。可以将值为 i 的元素调整到第 i 个位置上，在不断替换排序的过程中寻找相同的数字，发现当前<u><strong>数字</strong></u>与<u><strong>数字下标</strong></u>数字相同时即中断程序。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">findRepeatNumber</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">length</span> <span class="operator">=</span> nums.length;</span><br><span class="line">        <span class="keyword">if</span> (nums == <span class="literal">null</span> || length &lt;= <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; length; i++) &#123;</span><br><span class="line">            <span class="comment">// 如果当前数字与下标符合，把当前 数字 与 当前数字下标值 交换</span></span><br><span class="line">            <span class="keyword">while</span> (nums[i] != i) &#123;</span><br><span class="line">                <span class="comment">// 如果发现当前 数字 与 数字下标值 相同，说明找到了重复数字</span></span><br><span class="line">                <span class="keyword">if</span> (nums[i] == nums[nums[i]]) &#123;</span><br><span class="line">                    <span class="keyword">return</span>  nums[i];</span><br><span class="line">                &#125;</span><br><span class="line">                swap(nums, i, nums[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 两数交换方法</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> i, <span class="type">int</span> j)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">t</span> <span class="operator">=</span> nums[i];</span><br><span class="line">        nums[i] = nums[j];</span><br><span class="line">        nums[j] = t;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="难度：中等"><a href="#难度：中等" class="headerlink" title="难度：中等"></a>难度：中等</h1><h1 id="难度：困难"><a href="#难度：困难" class="headerlink" title="难度：困难"></a>难度：困难</h1>]]></content>
+      <categories>
+        <category>算法</category>
+        <category>剑指Offer</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
 </search>

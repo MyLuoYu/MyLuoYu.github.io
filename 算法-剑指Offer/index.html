@@ -20,24 +20,29 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="长梦">
-<meta property="og:url" content="http://example.com/index.html">
+    <meta name="description" content="力扣算法题：剑指Offer     Java版本，算法解析和代码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法:剑指Offer">
+<meta property="og:url" content="http://example.com/%E7%AE%97%E6%B3%95-%E5%89%91%E6%8C%87Offer/index.html">
 <meta property="og:site_name" content="长梦">
+<meta property="og:description" content="力扣算法题：剑指Offer     Java版本，算法解析和代码">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-25T15:24:40.000Z">
+<meta property="article:modified_time" content="2022-08-25T16:01:55.053Z">
 <meta property="article:author" content="长梦">
-<meta property="article:tag" content="Linux, &#39;大数据&#39;">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/%E7%AE%97%E6%B3%95-%E5%89%91%E6%8C%87Offer/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/%E7%AE%97%E6%B3%95-%E5%89%91%E6%8C%87Offer/","path":"算法-剑指Offer/","title":"算法:剑指Offer"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>长梦</title>
+<title>算法:剑指Offer | 长梦</title>
   
 
 
@@ -67,7 +72,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">长梦</h1>
+      <p class="site-title">长梦</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">长夜里的梦</p>
@@ -127,7 +132,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -140,6 +145,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9A%BE%E5%BA%A6%EF%BC%9A%E7%AE%80%E5%8D%95"><span class="nav-number">1.</span> <span class="nav-text">难度：简单</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97"><span class="nav-number">1.1.</span> <span class="nav-text">数组中重复的数字</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3"><span class="nav-number">1.1.1.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">1.1.2.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9A%BE%E5%BA%A6%EF%BC%9A%E4%B8%AD%E7%AD%89"><span class="nav-number">2.</span> <span class="nav-text">难度：中等</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9A%BE%E5%BA%A6%EF%BC%9A%E5%9B%B0%E9%9A%BE"><span class="nav-number">3.</span> <span class="nav-text">难度：困难</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -201,16 +207,17 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/%E7%AE%97%E6%B3%95-%E5%89%91%E6%8C%87Offer/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -224,13 +231,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 长梦">
+      <meta itemprop="name" content="算法:剑指Offer | 长梦">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E7%AE%97%E6%B3%95-%E5%89%91%E6%8C%87Offer/" class="post-title-link" itemprop="url">算法:剑指Offer</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          算法:剑指Offer
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -273,17 +280,19 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>    力扣算法题：剑指Offer</p>
+        <p>    力扣算法题：剑指Offer</p>
 <p>    Java版本，算法解析和代码</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E7%AE%97%E6%B3%95-%E5%89%91%E6%8C%87Offer/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
+<span id="more"></span>
+
+<h1 id="难度：简单"><a href="#难度：简单" class="headerlink" title="难度：简单"></a>难度：简单</h1><h2 id="数组中重复的数字"><a href="#数组中重复的数字" class="headerlink" title="数组中重复的数字"></a>数组中重复的数字</h2><blockquote>
+<p>在一个长度为 n 的数组里的所有数字都在 0 到 n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字是重复的，也不知道每个数字重复几次。请找出数组中任意一个重复的数字。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">&#123;<span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">5</span>&#125;</span><br><span class="line"></span><br><span class="line">Output:</span><br><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>题目只需要找到任意一个重复的数字，因此不需要使用排序的方法，也不需要使用额外的标记数组。可以将值为 i 的元素调整到第 i 个位置上，在不断替换排序的过程中寻找相同的数字，发现当前<u><strong>数字</strong></u>与<u><strong>数字下标</strong></u>数字相同时即中断程序。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">findRepeatNumber</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">length</span> <span class="operator">=</span> nums.length;</span><br><span class="line">        <span class="keyword">if</span> (nums == <span class="literal">null</span> || length &lt;= <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; length; i++) &#123;</span><br><span class="line">            <span class="comment">// 如果当前数字与下标符合，把当前 数字 与 当前数字下标值 交换</span></span><br><span class="line">            <span class="keyword">while</span> (nums[i] != i) &#123;</span><br><span class="line">                <span class="comment">// 如果发现当前 数字 与 数字下标值 相同，说明找到了重复数字</span></span><br><span class="line">                <span class="keyword">if</span> (nums[i] == nums[nums[i]]) &#123;</span><br><span class="line">                    <span class="keyword">return</span>  nums[i];</span><br><span class="line">                &#125;</span><br><span class="line">                swap(nums, i, nums[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 两数交换方法</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> i, <span class="type">int</span> j)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">t</span> <span class="operator">=</span> nums[i];</span><br><span class="line">        nums[i] = nums[j];</span><br><span class="line">        nums[j] = t;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="难度：中等"><a href="#难度：中等" class="headerlink" title="难度：中等"></a>难度：中等</h1><h1 id="难度：困难"><a href="#难度：困难" class="headerlink" title="难度：困难"></a>难度：困难</h1>
     </div>
 
     
@@ -291,292 +300,26 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+              <a href="/tags/Java/" rel="tag"># Java</a>
+          </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Hadoop%E6%90%AD%E5%BB%BA%E8%B0%83%E4%BC%98%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my.png">
-      <meta itemprop="name" content="长梦">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="长梦">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 长梦">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Hadoop%E6%90%AD%E5%BB%BA%E8%B0%83%E4%BC%98%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Hadoop搭建调优笔记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-08-14 22:50:52" itemprop="dateCreated datePublished" datetime="2022-08-14T22:50:52+08:00">2022-08-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-22 20:18:00" itemprop="dateModified" datetime="2022-08-22T20:18:00+08:00">2022-08-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index"><span itemprop="name">大数据</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/Hadoop/" itemprop="url" rel="index"><span itemprop="name">Hadoop</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>    使用Linux（manjaro）系统，从虚拟机开始搭建Hadoop平台以及Hadoop的调优。内容简单详细</p>
-<p>    点击下载👉<a target="_blank" rel="noopener" href="http://120.77.79.164/data/Hadoop%E6%90%AD%E5%BB%BA%E8%B0%83%E4%BC%98%E7%AC%94%E8%AE%B0.pdf">PDF下载</a></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Hadoop%E6%90%AD%E5%BB%BA%E8%B0%83%E4%BC%98%E7%AC%94%E8%AE%B0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Manjaro-i3wm%E5%AE%89%E8%A3%85/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my.png">
-      <meta itemprop="name" content="长梦">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="长梦">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 长梦">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Manjaro-i3wm%E5%AE%89%E8%A3%85/" class="post-title-link" itemprop="url">Manjaro-i3wm安装</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-08-13 20:42:59" itemprop="dateCreated datePublished" datetime="2022-08-13T20:42:59+08:00">2022-08-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-25 14:27:28" itemprop="dateModified" datetime="2022-08-25T14:27:28+08:00">2022-08-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/IT%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">IT知识</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>    详细介绍Manjaro系统的i3wm桌面环境的安装与踩坑。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Manjaro-i3wm%E5%AE%89%E8%A3%85/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Hadoop%E6%90%AD%E5%BB%BA%E8%B0%83%E4%BC%98%E7%AC%94%E8%AE%B0/" rel="prev" title="Hadoop搭建调优笔记">
+                  <i class="fa fa-chevron-left"></i> Hadoop搭建调优笔记
+                </a>
             </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my.png">
-      <meta itemprop="name" content="长梦">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="长梦">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 长梦">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">Linux常用命令</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-08-01 09:52:28" itemprop="dateCreated datePublished" datetime="2022-08-01T09:52:28+08:00">2022-08-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-23 17:59:10" itemprop="dateModified" datetime="2022-08-23T17:59:10+08:00">2022-08-23</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/IT%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">IT知识</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>    本文撰写的目的是为了使刚接触Linux的小白更好的操作使用Linux，以及作为个人的备忘录。文章介绍的命令是本在Linux系统日常使用中常用到的，或者是在服务器上开发所用到的高频率命令。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
+            <div class="post-nav-item">
             </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          </div>
     </footer>
   </article>
 </div>
+
 
 
 
