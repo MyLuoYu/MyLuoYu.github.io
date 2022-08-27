@@ -162,8 +162,6 @@
 <p>将当前目录及其子目录下所有最近 20 天内更新过的文件列出:</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">find . -ctime 20</span><br></pre></td></tr></table></figure>
 
-
-
 <h1 id="内容查找命令：grep"><a href="#内容查找命令：grep" class="headerlink" title="内容查找命令：grep"></a>内容查找命令：grep</h1><blockquote>
 <p>grep 命令用于查找文件里符合条件的字符串。</p>
 <p>grep 指令用于查找内容包含指定的范本样式的文件，如果发现某文件的内容符合所指定的范本样式，预设 grep 指令会把含有范本样式的那一列显示出来。若不指定任何文件名称，或是所给予的文件名为 -，则 grep 指令会从标准输入设备读取数据。</p>
@@ -188,8 +186,6 @@
 <p>反向查找。前面各个例子是查找并打印出符合条件的行，通过”-v”参数可以打印出不符合条件行的内容。查找文件名中包含 test 的文件中不包含test 的行</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">grep -v <span class="built_in">test</span> *<span class="built_in">test</span>*</span><br></pre></td></tr></table></figure>
 
-
-
 <h1 id="文本处理：awk"><a href="#文本处理：awk" class="headerlink" title="文本处理：awk"></a>文本处理：awk</h1><blockquote>
 <p>AWK 是一种处理文本文件的语言，是一个强大的文本分析工具。awk是一个强大的工具能处理多种应用场景，但最常用的情况是对一个文件安行进行分割提取。</p>
 </blockquote>
@@ -213,12 +209,10 @@
 <p>使用多个分隔符.先使用空格分割，然后对分割结果再使用”,”分割</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">awk -F <span class="string">&#x27;[ ,]&#x27;</span>  <span class="string">&#x27;&#123;print $1,$2,$5&#125;&#x27;</span>   log.txt</span><br></pre></td></tr></table></figure>
 
-
-
 <h1 id="管道符："><a href="#管道符：" class="headerlink" title="管道符：|"></a>管道符：|</h1><blockquote>
 <p>管道符的作用是将上一个命令的输出转为下一个命令的输入，通过使用|（管道）符号，我们能重定向<strong>stdout</strong>流。管道符通常与grep、awk、find连用。</p>
 </blockquote>
-<h1 id="命令格式-8"><a href="#命令格式-8" class="headerlink" title="命令格式"></a>命令格式</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[命令] | [命令]</span><br></pre></td></tr></table></figure>
+<h2 id="命令格式-8"><a href="#命令格式-8" class="headerlink" title="命令格式"></a>命令格式</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[命令] | [命令]</span><br></pre></td></tr></table></figure>
 
 <h2 id="案例-8"><a href="#案例-8" class="headerlink" title="案例"></a>案例</h2><p>查找 xset q 命令 包含Caps Lock的行 并提取以空格或Tab分割的第4个元素</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">xset q | grep <span class="string">&#x27;Caps Lock&#x27;</span> | awk <span class="string">&#x27;&#123;print $4&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
