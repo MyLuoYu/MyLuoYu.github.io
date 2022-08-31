@@ -940,4 +940,45 @@
         <tag>Hadoop</tag>
       </tags>
   </entry>
+  <entry>
+    <title>SQL:函数依赖</title>
+    <url>/SQL-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/</url>
+    <content><![CDATA[<p>    函数依赖是指关系中属性间（或者说是表中字段间）的对应关系。函数依赖是SQL中的基础知识，理解了什么是函数依赖便能更好的理解什么是“范式”。</p>
+<span id="more"></span>
+
+<h1 id="完全函数依赖"><a href="#完全函数依赖" class="headerlink" title="完全函数依赖"></a>完全函数依赖</h1><blockquote>
+<p>设X，Y是关系R的两个属性集合，X’是X的真子集，存在X→Y，但对每一个X’都有X’!→Y，则称Y完全函数依赖于X</p>
+</blockquote>
+<p>解释：</p>
+<p>    比如通过，(学号，课程) 推出分数 ，但是单独用学号推断不出来分数，那么就可以说：分数 完全依赖于(学号，课程) 。</p>
+<p><img src="/SQL-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/2022-09-01-00-11-46-image.png"></p>
+<p>    即：通过AB能得出C，但是AB单独得不出C，那么说C完全依赖于AB。</p>
+<p><img src="/SQL-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/2022-09-01-00-00-54-image.png"></p>
+<h1 id="部分函数依赖"><a href="#部分函数依赖" class="headerlink" title="部分函数依赖"></a>部分函数依赖</h1><blockquote>
+<p>假如 Y函数依赖于 X，但同时 Y 并不完全函数依赖于 X，那么我们就称 Y 部分函数依赖于 X。</p>
+</blockquote>
+<p>解释：</p>
+<p>    比如通过，(学号，课程) 推出姓名，因为其实直接可以通过，学号推出姓名，所以：姓名  部分依赖于 (学号，课程)</p>
+<p><img src="/SQL-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/2022-09-01-00-15-01-image.png"></p>
+<p>    即：通过AB能得出C，通过A也能得出C，或者通过B也能得出C，那么说C部分依赖于AB。</p>
+<p><img src="/SQL-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/2022-08-31-23-58-38-image.png"></p>
+<h1 id="传递函数依赖"><a href="#传递函数依赖" class="headerlink" title="传递函数依赖"></a>传递函数依赖</h1><blockquote>
+<p>传递函数依赖：设X，Y，Z是关系R中互不相同的属性集合，存在X→Y(Y !→X),Y→Z，则称Z传递函数依赖于X。</p>
+</blockquote>
+<p>解释：</p>
+<p>    比如：学号 推出 系名 ， 系名 推出 系主任， 但是，系主任推不出学号，系主任主要依赖于系名。这种情况可以说：系主任 传递依赖于 学号</p>
+<p><img src="/SQL-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/2022-09-01-00-16-03-image.png"></p>
+<p>    即：通过A得到B，通过B得到C，但是C得不到A，那么说C传递依赖于A。</p>
+<p><img src="/SQL-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/2022-09-01-00-05-27-image.png"></p>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><p>参考图表</p>
+<p><img src="/SQL-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/2022-08-31-23-51-25-image.png"></p>
+]]></content>
+      <categories>
+        <category>IT知识</category>
+      </categories>
+      <tags>
+        <tag>基础知识</tag>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
 </search>

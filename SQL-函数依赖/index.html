@@ -20,30 +20,37 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="详细介绍Manjaro系统的i3wm桌面环境的安装与踩坑。">
+    <meta name="description" content="函数依赖是指关系中属性间（或者说是表中字段间）的对应关系。函数依赖是SQL中的基础知识，理解了什么是函数依赖便能更好的理解什么是“范式”。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Manjaro-i3wm安装">
-<meta property="og:url" content="http://example.com/Manjaro-i3wm%E5%AE%89%E8%A3%85/index.html">
+<meta property="og:title" content="SQL:函数依赖">
+<meta property="og:url" content="http://example.com/SQL-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/index.html">
 <meta property="og:site_name" content="长梦">
-<meta property="og:description" content="详细介绍Manjaro系统的i3wm桌面环境的安装与踩坑。">
+<meta property="og:description" content="函数依赖是指关系中属性间（或者说是表中字段间）的对应关系。函数依赖是SQL中的基础知识，理解了什么是函数依赖便能更好的理解什么是“范式”。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/Manjaro-i3wm%E5%AE%89%E8%A3%85/2022-08-13-21-01-55-image.png">
-<meta property="article:published_time" content="2022-08-13T12:42:59.000Z">
-<meta property="article:modified_time" content="2022-08-25T06:27:28.454Z">
+<meta property="og:image" content="http://example.com/SQL-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/2022-09-01-00-11-46-image.png">
+<meta property="og:image" content="http://example.com/SQL-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/2022-09-01-00-00-54-image.png">
+<meta property="og:image" content="http://example.com/SQL-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/2022-09-01-00-15-01-image.png">
+<meta property="og:image" content="http://example.com/SQL-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/2022-08-31-23-58-38-image.png">
+<meta property="og:image" content="http://example.com/SQL-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/2022-09-01-00-16-03-image.png">
+<meta property="og:image" content="http://example.com/SQL-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/2022-09-01-00-05-27-image.png">
+<meta property="og:image" content="http://example.com/SQL-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/2022-08-31-23-51-25-image.png">
+<meta property="article:published_time" content="2022-08-31T15:30:17.000Z">
+<meta property="article:modified_time" content="2022-08-31T16:26:11.225Z">
 <meta property="article:author" content="长梦">
-<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="基础知识">
+<meta property="article:tag" content="SQL">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/Manjaro-i3wm%E5%AE%89%E8%A3%85/2022-08-13-21-01-55-image.png">
+<meta name="twitter:image" content="http://example.com/SQL-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/2022-09-01-00-11-46-image.png">
 
 
-<link rel="canonical" href="http://example.com/Manjaro-i3wm%E5%AE%89%E8%A3%85/">
+<link rel="canonical" href="http://example.com/SQL-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/Manjaro-i3wm%E5%AE%89%E8%A3%85/","path":"Manjaro-i3wm安装/","title":"Manjaro-i3wm安装"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/SQL-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/","path":"SQL-函数依赖/","title":"SQL:函数依赖"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Manjaro-i3wm安装 | 长梦</title>
+<title>SQL:函数依赖 | 长梦</title>
   
 
 
@@ -146,7 +153,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ISO%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BD"><span class="nav-number">1.1.</span> <span class="nav-text">ISO镜像下载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%BB%E5%BD%95U%E7%9B%98"><span class="nav-number">1.2.</span> <span class="nav-text">刻录U盘</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BDU%E7%9B%98%E5%88%BB%E5%BD%95%E5%B7%A5%E5%85%B7Rufus"><span class="nav-number">1.2.1.</span> <span class="nav-text">下载U盘刻录工具Rufus</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rufus%E4%BD%BF%E7%94%A8"><span class="nav-number">1.2.2.</span> <span class="nav-text">Rufus使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E5%85%A5BIOS%E5%90%AF%E5%8A%A8%E5%AE%89%E8%A3%85%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.3.</span> <span class="nav-text">进入BIOS启动安装程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Manjaro"><span class="nav-number">1.4.</span> <span class="nav-text">安装Manjaro</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%8C%E5%85%A8%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96"><span class="nav-number">1.</span> <span class="nav-text">完全函数依赖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%83%A8%E5%88%86%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96"><span class="nav-number">2.</span> <span class="nav-text">部分函数依赖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BC%A0%E9%80%92%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96"><span class="nav-number">3.</span> <span class="nav-text">传递函数依赖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%99%84%E5%BD%95"><span class="nav-number">4.</span> <span class="nav-text">附录</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -219,7 +226,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Manjaro-i3wm%E5%AE%89%E8%A3%85/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/SQL-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/my.png">
@@ -232,12 +239,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Manjaro-i3wm安装 | 长梦">
+      <meta itemprop="name" content="SQL:函数依赖 | 长梦">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Manjaro-i3wm安装
+          SQL:函数依赖
         </h1>
 
         <div class="post-meta-container">
@@ -248,14 +255,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2022-08-13 20:42:59" itemprop="dateCreated datePublished" datetime="2022-08-13T20:42:59+08:00">2022-08-13</time>
+      <time title="创建时间：2022-08-31 23:30:17" itemprop="dateCreated datePublished" datetime="2022-08-31T23:30:17+08:00">2022-08-31</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-25 14:27:28" itemprop="dateModified" datetime="2022-08-25T14:27:28+08:00">2022-08-25</time>
+      <time title="修改时间：2022-09-01 00:26:11" itemprop="dateModified" datetime="2022-09-01T00:26:11+08:00">2022-09-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -277,14 +284,36 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>    详细介绍Manjaro系统的i3wm桌面环境的安装与踩坑。</p>
+        <p>    函数依赖是指关系中属性间（或者说是表中字段间）的对应关系。函数依赖是SQL中的基础知识，理解了什么是函数依赖便能更好的理解什么是“范式”。</p>
 <span id="more"></span>
 
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>manjaro i3其实是i3-gaps,i3wm的加强版,主要能使窗口间有间隔！而且下载完整版安装很多软件及配置，快捷键都默认设置好了  。<br>系统镜像在官网下载的社区版本manjaro+i3</p>
-<h2 id="ISO镜像下载"><a href="#ISO镜像下载" class="headerlink" title="ISO镜像下载"></a>ISO镜像下载</h2><p><a target="_blank" rel="noopener" href="https://manjaro.org/download/">下载网址</a>：<a target="_blank" rel="noopener" href="https://manjaro.org/download/">https://manjaro.org/download/</a></p>
-<p><img src="/Manjaro-i3wm%E5%AE%89%E8%A3%85/2022-08-13-21-01-55-image.png"></p>
-<h2 id="刻录U盘"><a href="#刻录U盘" class="headerlink" title="刻录U盘"></a>刻录U盘</h2><h3 id="下载U盘刻录工具Rufus"><a href="#下载U盘刻录工具Rufus" class="headerlink" title="下载U盘刻录工具Rufus"></a>下载U盘刻录工具Rufus</h3><p><a target="_blank" rel="noopener" href="https://rufus.en.softonic.com/">下载地址</a>：<a target="_blank" rel="noopener" href="https://rufus.en.softonic.com/">https://rufus.en.softonic.com/</a></p>
-<h3 id="Rufus使用"><a href="#Rufus使用" class="headerlink" title="Rufus使用"></a>Rufus使用</h3><h2 id="进入BIOS启动安装程序"><a href="#进入BIOS启动安装程序" class="headerlink" title="进入BIOS启动安装程序"></a>进入BIOS启动安装程序</h2><h2 id="安装Manjaro"><a href="#安装Manjaro" class="headerlink" title="安装Manjaro"></a>安装Manjaro</h2>
+<h1 id="完全函数依赖"><a href="#完全函数依赖" class="headerlink" title="完全函数依赖"></a>完全函数依赖</h1><blockquote>
+<p>设X，Y是关系R的两个属性集合，X’是X的真子集，存在X→Y，但对每一个X’都有X’!→Y，则称Y完全函数依赖于X</p>
+</blockquote>
+<p>解释：</p>
+<p>    比如通过，(学号，课程) 推出分数 ，但是单独用学号推断不出来分数，那么就可以说：分数 完全依赖于(学号，课程) 。</p>
+<p><img src="/SQL-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/2022-09-01-00-11-46-image.png"></p>
+<p>    即：通过AB能得出C，但是AB单独得不出C，那么说C完全依赖于AB。</p>
+<p><img src="/SQL-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/2022-09-01-00-00-54-image.png"></p>
+<h1 id="部分函数依赖"><a href="#部分函数依赖" class="headerlink" title="部分函数依赖"></a>部分函数依赖</h1><blockquote>
+<p>假如 Y函数依赖于 X，但同时 Y 并不完全函数依赖于 X，那么我们就称 Y 部分函数依赖于 X。</p>
+</blockquote>
+<p>解释：</p>
+<p>    比如通过，(学号，课程) 推出姓名，因为其实直接可以通过，学号推出姓名，所以：姓名  部分依赖于 (学号，课程)</p>
+<p><img src="/SQL-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/2022-09-01-00-15-01-image.png"></p>
+<p>    即：通过AB能得出C，通过A也能得出C，或者通过B也能得出C，那么说C部分依赖于AB。</p>
+<p><img src="/SQL-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/2022-08-31-23-58-38-image.png"></p>
+<h1 id="传递函数依赖"><a href="#传递函数依赖" class="headerlink" title="传递函数依赖"></a>传递函数依赖</h1><blockquote>
+<p>传递函数依赖：设X，Y，Z是关系R中互不相同的属性集合，存在X→Y(Y !→X),Y→Z，则称Z传递函数依赖于X。</p>
+</blockquote>
+<p>解释：</p>
+<p>    比如：学号 推出 系名 ， 系名 推出 系主任， 但是，系主任推不出学号，系主任主要依赖于系名。这种情况可以说：系主任 传递依赖于 学号</p>
+<p><img src="/SQL-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/2022-09-01-00-16-03-image.png"></p>
+<p>    即：通过A得到B，通过B得到C，但是C得不到A，那么说C传递依赖于A。</p>
+<p><img src="/SQL-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/2022-09-01-00-05-27-image.png"></p>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><p>参考图表</p>
+<p><img src="/SQL-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/2022-08-31-23-51-25-image.png"></p>
+
     </div>
 
     
@@ -293,21 +322,19 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" rel="tag"># 基础知识</a>
+              <a href="/tags/SQL/" rel="tag"># SQL</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/Hadoop%E6%90%AD%E5%BB%BA%E8%B0%83%E4%BC%98%E7%AC%94%E8%AE%B0/" rel="prev" title="Hadoop搭建调优笔记">
-                  <i class="fa fa-chevron-left"></i> Hadoop搭建调优笔记
+                <a href="/%E7%AE%97%E6%B3%95-%E5%89%91%E6%8C%87Offer/" rel="prev" title="算法:剑指Offer">
+                  <i class="fa fa-chevron-left"></i> 算法:剑指Offer
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/%E7%AE%97%E6%B3%95-%E5%89%91%E6%8C%87Offer/" rel="next" title="算法:剑指Offer">
-                  算法:剑指Offer <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
