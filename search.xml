@@ -331,7 +331,7 @@
 <p>假设输入的前序遍历和中序遍历的结果中都不含重复的数字。</p>
 <p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode.cn/problems/zhong-jian-er-cha-shu-lcof/">https://leetcode.cn/problems/zhong-jian-er-cha-shu-lcof/</a></p>
 </blockquote>
-<p><img src="/home/luo/%E6%96%87%E6%A1%A3/Blog/source/_posts/%E7%AE%97%E6%B3%95-%E5%89%91%E6%8C%87Offer/2022-09-01-21-41-25-image.png"></p>
+<p><img src="/%E7%AE%97%E6%B3%95-%E5%89%91%E6%8C%87Offer/2022-09-01-22-17-35-2022-09-01-21-41-25-image.png"></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Input: preorder = [<span class="number">3</span>,<span class="number">9</span>,<span class="number">20</span>,<span class="number">15</span>,<span class="number">7</span>], inorder = [<span class="number">9</span>,<span class="number">3</span>,<span class="number">15</span>,<span class="number">20</span>,<span class="number">7</span>]</span><br><span class="line">Output: [<span class="number">3</span>,<span class="number">9</span>,<span class="number">20</span>,<span class="literal">null</span>,<span class="literal">null</span>,<span class="number">15</span>,<span class="number">7</span>]</span><br></pre></td></tr></table></figure>
 
 <h3 id="题解思路-4"><a href="#题解思路-4" class="headerlink" title="题解思路"></a>题解思路</h3><p>前序遍历的第一个值为根节点的值，使用这个值将中序遍历结果分成两部分，左部分为树的左子树中序遍历结果，右部分为树的右子树中序遍历的结果。</p>
