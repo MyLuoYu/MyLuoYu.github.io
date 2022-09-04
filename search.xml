@@ -1014,4 +1014,39 @@
         <tag>SQL</tag>
       </tags>
   </entry>
+  <entry>
+    <title>SQL:三范式</title>
+    <url>/SQL-%E4%B8%89%E8%8C%83%E5%BC%8F/</url>
+    <content><![CDATA[<p>    SQL范式的作用是防止信息的重复、防止更新异常  、防止插入异常（如：无法正常显示信息）  、防止删除异常（如：删除了不因该的有用信息）</p>
+<p>    SQL中有6大范式，但一般数据库只会使用到前三大范式。一般地，在进行数据库设计时，应遵循三大原则，也就是我们通常说的三大范式。</p>
+<p><img src="https://img-blog.csdnimg.cn/20190414095710259.png" alt="关系"></p>
+<span id="more"></span>
+
+<h1 id="第一范式1NF"><a href="#第一范式1NF" class="headerlink" title="第一范式1NF"></a>第一范式1NF</h1><p><strong>定义：</strong> 强调的是列的原子性，即数据库中每一列的字段都是单一属性，不可再分的。并且这个单一属性必须是由基本的数据类型所构成的</p>
+<p><strong>核心原则</strong>：属性不可切割</p>
+<p><strong>举例</strong>：</p>
+<p><img src="/SQL-%E4%B8%89%E8%8C%83%E5%BC%8F/2022-09-04-14-10-15-image.png"></p>
+<p>    很明显上图所示的表格设计是不符合第一范式的，商品列中的数据不是原子数据项，是可以进行分割的，因此对表格进行修改，让表格符合第一范式的要求，修改结果如下图所示</p>
+<p><img src="/SQL-%E4%B8%89%E8%8C%83%E5%BC%8F/2022-09-04-14-10-48-image.png"></p>
+<h1 id="第二范式2NF"><a href="#第二范式2NF" class="headerlink" title="第二范式2NF"></a>第二范式2NF</h1><p><strong>定义</strong>：在满足1NF的基础上再满足依赖性的两个约束：一张表必须有一个主键；非主键类必须完全依赖于主键，而不能只依赖主键的一部分。</p>
+<p><strong>核心原则</strong>：不能存在“部分函数依赖” </p>
+<p><strong>举例</strong>：</p>
+<p><img src="/SQL-%E4%B8%89%E8%8C%83%E5%BC%8F/2022-09-04-14-13-00-image.png"></p>
+<p>    以上表格明显存在，部分依赖。比如，这张表的主键是 (学号，课名），分数确实完全依赖于 (学号，课名），但是姓名并不完全依赖于(学号，课名）。应修去掉部分函数依赖依赖修改为如下两个表。</p>
+<p><img src="/SQL-%E4%B8%89%E8%8C%83%E5%BC%8F/2022-09-04-14-13-55-image.png">        <img src="/SQL-%E4%B8%89%E8%8C%83%E5%BC%8F/2022-09-04-14-14-00-image.png"></p>
+<h1 id="第三范式3NF"><a href="#第三范式3NF" class="headerlink" title="第三范式3NF"></a>第三范式3NF</h1><p><strong>定义</strong>：在满足2NF的基础上，另外再满足一个条件：非主键列必须直接依赖于主键，不能存在传递依赖。</p>
+<p><strong>核心原则</strong>：不能存在传递函数依赖</p>
+<p><strong>举例</strong>：</p>
+<p><img src="/SQL-%E4%B8%89%E8%8C%83%E5%BC%8F/2022-09-04-14-16-51-image.png"></p>
+<p>    在这张表中，存在传递函数依赖：学号-&gt;系名-&gt;系主任。学号不能直接推出系主任。上面表需要再次拆解。</p>
+<p><img src="/SQL-%E4%B8%89%E8%8C%83%E5%BC%8F/2022-09-04-14-19-01-image.png">        <img src="/SQL-%E4%B8%89%E8%8C%83%E5%BC%8F/2022-09-04-14-19-06-image.png"></p>
+]]></content>
+      <categories>
+        <category>IT知识</category>
+      </categories>
+      <tags>
+        <tag>基础知识</tag>
+        <tag>SQl</tag>
+      </tags>
+  </entry>
 </search>
