@@ -1066,7 +1066,7 @@
     <title>在CentOS中安装配置zsh</title>
     <url>/%E5%9C%A8CentOS%E4%B8%AD%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEzsh/</url>
     <content><![CDATA[<p>    在CentOS中使用zsh及其插件能够在工作中大提高效率，主要使用的插件有：</p>
-<p>completions：命令补全插件。shell进行补全。<br>zsh-syntax-highlighting：高亮插件。对shell语法进行高亮展示。<br>zsh-autosuggestions：历史命令插件。对历史命令进行存储提示。</p>
+<p>zsh-completions：命令补全插件。shell进行补全。<br>zsh-syntax-highlighting：高亮插件。对shell语法进行高亮展示。<br>zsh-autosuggestions：历史命令插件。对历史命令进行存储提示。</p>
 <span id="more"></span>
 
 <h1 id="安装基本组件"><a href="#安装基本组件" class="headerlink" title="安装基本组件"></a>安装基本组件</h1><h2 id="安装zsh和工具"><a href="#安装zsh和工具" class="headerlink" title="安装zsh和工具"></a>安装zsh和工具</h2><p>首先执行 <code>yum</code> 命令来安装需要的 <code>zsh</code> 原始程序与 <code>git</code> 程序来 <code>pull</code> 代码</p>
@@ -1119,9 +1119,7 @@
 <p>刷新生效</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">source ~/.zshrc</span><br></pre></td></tr></table></figure>
 
-<h2 id="使用zsh"><a href="#使用zsh" class="headerlink" title="使用zsh"></a>使用zsh</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">zsh</span><br></pre></td></tr></table></figure>
-
-
+<h1 id="使用zsh"><a href="#使用zsh" class="headerlink" title="使用zsh"></a>使用zsh</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">zsh</span><br></pre></td></tr></table></figure>
 
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>参考文章：<a href="https://blog.csdn.net/qimowei/article/details/119517167">Centos7-Linux安装zsh和oh-my-zsh(内含国内安装方法)_水豚少年的码农生活的博客-CSDN博客_zsh 国内</a></p>
 <p>参考文章：<a href="https://cloud.tencent.com/developer/article/1722062">CentOS 7.x 安装 ZSH 终端的配置方法 - 腾讯云开发者社区-腾讯云</a></p>
