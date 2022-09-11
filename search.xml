@@ -250,6 +250,67 @@
 
 <p>假如你有一个文件包含了很多你希望下载的 URL，你能够使用 xargs下载所有链接</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cat</span> url_list.txt | xargs wget -c</span><br></pre></td></tr></table></figure>
+
+<h1 id="压缩解压：tar"><a href="#压缩解压：tar" class="headerlink" title="压缩解压：tar"></a>压缩解压：tar</h1><h2 id="命令格式-10"><a href="#命令格式-10" class="headerlink" title="命令格式"></a>命令格式</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar [参数]</span><br></pre></td></tr></table></figure>
+
+<h2 id="参数-8"><a href="#参数-8" class="headerlink" title="参数"></a>参数</h2><ul>
+<li>-A或–catenate 新增文件到已存在的备份文件。</li>
+<li>-b&lt;区块数目&gt;或–blocking-factor&#x3D;&lt;区块数目&gt; 设置每笔记录的区块数目，每个区块大小为12Bytes。</li>
+<li>-B或–read-full-records 读取数据时重设区块大小。</li>
+<li>-c或–create 建立新的备份文件。</li>
+<li>-C&lt;目的目录&gt;或–directory&#x3D;&lt;目的目录&gt; 切换到指定的目录。</li>
+<li>-d或–diff或–compare 对比备份文件内和文件系统上的文件的差异。</li>
+<li>-f&lt;备份文件&gt;或–file&#x3D;&lt;备份文件&gt; 指定备份文件。</li>
+<li>-F&lt;Script文件&gt;或–info-script&#x3D;&lt;Script文件&gt; 每次更换磁带时，就执行指定的Script文件。</li>
+<li>-g或–listed-incremental 处理GNU格式的大量备份。</li>
+<li>-G或–incremental 处理旧的GNU格式的大量备份。</li>
+<li>-h或–dereference 不建立符号连接，直接复制该连接所指向的原始文件。</li>
+<li>-i或–ignore-zeros 忽略备份文件中的0 Byte区块，也就是EOF。</li>
+<li>-k或–keep-old-files 解开备份文件时，不覆盖已有的文件。</li>
+<li>-K&lt;文件&gt;或–starting-file&#x3D;&lt;文件&gt; 从指定的文件开始还原。</li>
+<li>-l或–one-file-system 复制的文件或目录存放的文件系统，必须与tar指令执行时所处的文件系统相同，否则不予复制。</li>
+<li>-L&lt;媒体容量&gt;或-tape-length&#x3D;&lt;媒体容量&gt; 设置存放每体的容量，单位以1024 Bytes计算。</li>
+<li>-m或–modification-time 还原文件时，不变更文件的更改时间。</li>
+<li>-M或–multi-volume 在建立，还原备份文件或列出其中的内容时，采用多卷册模式。</li>
+<li>-N&lt;日期格式&gt;或–newer&#x3D;&lt;日期时间&gt; 只将较指定日期更新的文件保存到备份文件里。</li>
+<li>-o或–old-archive或–portability 将资料写入备份文件时使用V7格式。</li>
+<li>-O或–stdout 把从备份文件里还原的文件输出到标准输出设备。</li>
+<li>-p或–same-permissions 用原来的文件权限还原文件。</li>
+<li>-P或–absolute-names 文件名使用绝对名称，不移除文件名称前的”&#x2F;“号。</li>
+<li>-r或–append 新增文件到已存在的备份文件的结尾部分。</li>
+<li>-R或–block-number 列出每个信息在备份文件中的区块编号。</li>
+<li>-s或–same-order 还原文件的顺序和备份文件内的存放顺序相同。</li>
+<li>-S或–sparse 倘若一个文件内含大量的连续0字节，则将此文件存成稀疏文件。</li>
+<li>-t或–list 列出备份文件的内容。</li>
+<li>-T&lt;范本文件&gt;或–files-from&#x3D;&lt;范本文件&gt; 指定范本文件，其内含有一个或多个范本样式，让tar解开或建立符合设置条件的文件。</li>
+<li>-u或–update 仅置换较备份文件内的文件更新的文件。</li>
+<li>-U或–unlink-first 解开压缩文件还原文件之前，先解除文件的连接。</li>
+<li>-v或–verbose 显示指令执行过程。</li>
+<li>-V&lt;卷册名称&gt;或–label&#x3D;&lt;卷册名称&gt; 建立使用指定的卷册名称的备份文件。</li>
+<li>-w或–interactive 遭遇问题时先询问用户。</li>
+<li>-W或–verify 写入备份文件后，确认文件正确无误。</li>
+<li>-x或–extract或–get 从备份文件中还原文件。</li>
+<li>-X&lt;范本文件&gt;或–exclude-from&#x3D;&lt;范本文件&gt; 指定范本文件，其内含有一个或多个范本样式，让ar排除符合设置条件的文件。</li>
+<li>-z或–gzip或–ungzip 通过gzip指令处理备份文件。</li>
+<li>-Z或–compress或–uncompress 通过compress指令处理备份文</li>
+</ul>
+<h2 id="案例-10"><a href="#案例-10" class="headerlink" title="案例"></a>案例</h2><p>压缩文件 非打包</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar -czvf test.tar.gz a.c   //压缩 a.c文件为test.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>列出压缩文件内容</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar -tzvf test.tar.gz </span><br></pre></td></tr></table></figure>
+
+<p>解压文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar -xzvf test.tar.gz </span><br></pre></td></tr></table></figure>
+
+<p>解压文件到&#x2F;opt</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar -xzvf test.tar.gz -C /opt</span><br></pre></td></tr></table></figure>
+
+<p>排除目录中的某些文件，然后进行压缩</p>
+<blockquote>
+<p>将文件 abc 进行压缩时，排除1.txt，压缩后的文件名为 abc.tar.gz</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar --exclude=abc/1.txt -zcvf abc.tar.gz abc</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>IT知识</category>
@@ -339,7 +400,7 @@
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">示例 <span class="number">1</span>：</span><br><span class="line">输入：n = <span class="number">2</span></span><br><span class="line">输出：<span class="number">1</span></span><br><span class="line"></span><br><span class="line">示例 <span class="number">2</span>：</span><br><span class="line">输入：n = <span class="number">5</span></span><br><span class="line">输出：<span class="number">5</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="题解思路-4"><a href="#题解思路-4" class="headerlink" title="题解思路"></a>题解思路</h3><p>    当n小于等于1时直接返回，否则循环计算斐波那契数，计算时要对数进行取模以免超出范围。</p>
-<h3 id="代码-7"><a href="#代码-7" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">fib</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (n &lt;= <span class="number">1</span>) <span class="keyword">return</span> n;</span><br><span class="line">        <span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> c;</span><br><span class="line">        <span class="keyword">while</span> (n+<span class="number">1</span> &gt;= <span class="number">3</span>) &#123;</span><br><span class="line">            c = (a + b)%<span class="number">1000000007</span>;</span><br><span class="line">            a = b;</span><br><span class="line">            b = c;</span><br><span class="line">            n--;</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">return</span> b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="代码-7"><a href="#代码-7" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">fib</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (n &lt;= <span class="number">1</span>) <span class="keyword">return</span> n;</span><br><span class="line">        <span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> c;</span><br><span class="line">        <span class="keyword">while</span> (n &gt;= <span class="number">2</span>) &#123;</span><br><span class="line">            c = (a + b)%<span class="number">1000000007</span>;</span><br><span class="line">            a = b;</span><br><span class="line">            b = c;</span><br><span class="line">            n--;</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">return</span> b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="难度：中等"><a href="#难度：中等" class="headerlink" title="难度：中等"></a>难度：中等</h1><h2 id="二维数组中的查找-4"><a href="#二维数组中的查找-4" class="headerlink" title="二维数组中的查找-4"></a>二维数组中的查找-4</h2><blockquote>
 <p>在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个高效的函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
@@ -1059,7 +1120,7 @@
       </categories>
       <tags>
         <tag>基础知识</tag>
-        <tag>SQl</tag>
+        <tag>SQL</tag>
       </tags>
   </entry>
   <entry>
