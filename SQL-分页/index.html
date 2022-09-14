@@ -20,39 +20,29 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="SQL范式的作用是防止信息的重复、防止更新异常  、防止插入异常（如：无法正常显示信息）  、防止删除异常（如：删除了不因该的有用信息）     SQL中有6大范式，但一般数据库只会使用到前三大范式。一般地，在进行数据库设计时，应遵循三大原则，也就是我们通常说的三大范式。">
+    <meta name="description" content="分页查询是客户端通过传递start(页码)，limit(每页显示的条数)两个参数去分页查询数据库表中的数据。其本质是通过MySQL库中的LIMIT函数，从表中提取连续的若干行。该函数的用法也不仅限于分页，我们可以根据我们的需求改写自己的分页语句。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SQL:三范式">
-<meta property="og:url" content="http://example.com/SQL-%E4%B8%89%E8%8C%83%E5%BC%8F/index.html">
+<meta property="og:title" content="SQL:分页（LIMIT）">
+<meta property="og:url" content="http://example.com/SQL-%E5%88%86%E9%A1%B5/index.html">
 <meta property="og:site_name" content="长梦">
-<meta property="og:description" content="SQL范式的作用是防止信息的重复、防止更新异常  、防止插入异常（如：无法正常显示信息）  、防止删除异常（如：删除了不因该的有用信息）     SQL中有6大范式，但一般数据库只会使用到前三大范式。一般地，在进行数据库设计时，应遵循三大原则，也就是我们通常说的三大范式。">
+<meta property="og:description" content="分页查询是客户端通过传递start(页码)，limit(每页显示的条数)两个参数去分页查询数据库表中的数据。其本质是通过MySQL库中的LIMIT函数，从表中提取连续的若干行。该函数的用法也不仅限于分页，我们可以根据我们的需求改写自己的分页语句。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190414095710259.png">
-<meta property="og:image" content="http://example.com/SQL-%E4%B8%89%E8%8C%83%E5%BC%8F/2022-09-04-14-10-15-image.png">
-<meta property="og:image" content="http://example.com/SQL-%E4%B8%89%E8%8C%83%E5%BC%8F/2022-09-04-14-10-48-image.png">
-<meta property="og:image" content="http://example.com/SQL-%E4%B8%89%E8%8C%83%E5%BC%8F/2022-09-04-14-13-00-image.png">
-<meta property="og:image" content="http://example.com/SQL-%E4%B8%89%E8%8C%83%E5%BC%8F/2022-09-04-14-13-55-image.png">
-<meta property="og:image" content="http://example.com/SQL-%E4%B8%89%E8%8C%83%E5%BC%8F/2022-09-04-14-14-00-image.png">
-<meta property="og:image" content="http://example.com/SQL-%E4%B8%89%E8%8C%83%E5%BC%8F/2022-09-04-14-16-51-image.png">
-<meta property="og:image" content="http://example.com/SQL-%E4%B8%89%E8%8C%83%E5%BC%8F/2022-09-04-14-19-01-image.png">
-<meta property="og:image" content="http://example.com/SQL-%E4%B8%89%E8%8C%83%E5%BC%8F/2022-09-04-14-19-06-image.png">
-<meta property="article:published_time" content="2022-09-04T05:17:48.000Z">
-<meta property="article:modified_time" content="2022-09-09T07:58:18.802Z">
+<meta property="article:published_time" content="2022-09-14T03:37:41.000Z">
+<meta property="article:modified_time" content="2022-09-14T05:05:29.512Z">
 <meta property="article:author" content="长梦">
 <meta property="article:tag" content="基础知识">
 <meta property="article:tag" content="SQL">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190414095710259.png">
 
 
-<link rel="canonical" href="http://example.com/SQL-%E4%B8%89%E8%8C%83%E5%BC%8F/">
+<link rel="canonical" href="http://example.com/SQL-%E5%88%86%E9%A1%B5/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/SQL-%E4%B8%89%E8%8C%83%E5%BC%8F/","path":"SQL-三范式/","title":"SQL:三范式"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/SQL-%E5%88%86%E9%A1%B5/","path":"SQL-分页/","title":"SQL:分页（LIMIT）"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>SQL:三范式 | 长梦</title>
+<title>SQL:分页（LIMIT） | 长梦</title>
   
 
 
@@ -155,7 +145,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E8%8C%83%E5%BC%8F1NF"><span class="nav-number">1.</span> <span class="nav-text">第一范式1NF</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%C2%B7%E8%8C%83%E5%BC%8F2NF"><span class="nav-number">2.</span> <span class="nav-text">第二·范式2NF</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E8%8C%83%E5%BC%8F3NF"><span class="nav-number">3.</span> <span class="nav-text">第三范式3NF</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#LIMIT%E5%87%BD%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">LIMIT函数说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BC%98%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">3.</span> <span class="nav-text">应用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E9%A1%B5"><span class="nav-number">3.1.</span> <span class="nav-text">分页</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8"><span class="nav-number">3.2.</span> <span class="nav-text">查询数据是否存在</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E6%9C%80%E5%A4%A7-%E6%9C%80%E5%B0%8F-%E5%80%BC"><span class="nav-number">3.3.</span> <span class="nav-text">查询最大(最小)值</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -228,7 +218,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/SQL-%E4%B8%89%E8%8C%83%E5%BC%8F/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/SQL-%E5%88%86%E9%A1%B5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/my.png">
@@ -241,12 +231,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="SQL:三范式 | 长梦">
+      <meta itemprop="name" content="SQL:分页（LIMIT） | 长梦">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          SQL:三范式
+          SQL:分页（LIMIT）
         </h1>
 
         <div class="post-meta-container">
@@ -256,15 +246,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2022-09-04 13:17:48" itemprop="dateCreated datePublished" datetime="2022-09-04T13:17:48+08:00">2022-09-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-09-09 15:58:18" itemprop="dateModified" datetime="2022-09-09T15:58:18+08:00">2022-09-09</time>
+      <time title="创建时间：2022-09-14 11:37:41 / 修改时间：13:05:29" itemprop="dateCreated datePublished" datetime="2022-09-14T11:37:41+08:00">2022-09-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -286,29 +270,42 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>    SQL范式的作用是防止信息的重复、防止更新异常  、防止插入异常（如：无法正常显示信息）  、防止删除异常（如：删除了不因该的有用信息）</p>
-<p>    SQL中有6大范式，但一般数据库只会使用到前三大范式。一般地，在进行数据库设计时，应遵循三大原则，也就是我们通常说的三大范式。</p>
-<p><img src="https://img-blog.csdnimg.cn/20190414095710259.png" alt="关系"></p>
+        <p>    分页查询是客户端通过传递start(页码)，limit(每页显示的条数)两个参数去分页查询数据库表中的数据。其本质是通过MySQL库中的LIMIT函数，从表中提取连续的若干行。该函数的用法也不仅限于分页，我们可以根据我们的需求改写自己的分页语句。</p>
 <span id="more"></span>
 
-<h1 id="第一范式1NF"><a href="#第一范式1NF" class="headerlink" title="第一范式1NF"></a>第一范式1NF</h1><p><strong>定义：</strong> 强调的是列的原子性，即数据库中每一列的字段都是单一属性，不可再分的。并且这个单一属性必须是由基本的数据类型所构成的</p>
-<p><strong>核心原则</strong>：属性不可切割</p>
-<p><strong>举例</strong>：</p>
-<p><img src="/SQL-%E4%B8%89%E8%8C%83%E5%BC%8F/2022-09-04-14-10-15-image.png"></p>
-<p>    很明显上图所示的表格设计是不符合第一范式的，商品列中的数据不是原子数据项，是可以进行分割的，因此对表格进行修改，让表格符合第一范式的要求，修改结果如下图所示</p>
-<p><img src="/SQL-%E4%B8%89%E8%8C%83%E5%BC%8F/2022-09-04-14-10-48-image.png"></p>
-<h1 id="第二·范式2NF"><a href="#第二·范式2NF" class="headerlink" title="第二·范式2NF"></a>第二·范式2NF</h1><p><strong>定义</strong>：在满足1NF的基础上再满足依赖性的两个约束：一张表必须有一个主键；非主键类必须完全依赖于主键，而不能只依赖主键的一部分。</p>
-<p><strong>核心原则</strong>：不能存在“部分函数依赖” </p>
-<p><strong>举例</strong>：</p>
-<p><img src="/SQL-%E4%B8%89%E8%8C%83%E5%BC%8F/2022-09-04-14-13-00-image.png"></p>
-<p>    以上表格明显存在，部分依赖。比如，这张表的主键是 (学号，课名），分数确实完全依赖于 (学号，课名），但是姓名并不完全依赖于(学号，课名）。应修去掉部分函数依赖依赖修改为如下两个表。</p>
-<p><img src="/SQL-%E4%B8%89%E8%8C%83%E5%BC%8F/2022-09-04-14-13-55-image.png">        <img src="/SQL-%E4%B8%89%E8%8C%83%E5%BC%8F/2022-09-04-14-14-00-image.png"></p>
-<h1 id="第三范式3NF"><a href="#第三范式3NF" class="headerlink" title="第三范式3NF"></a>第三范式3NF</h1><p><strong>定义</strong>：在满足2NF的基础上，另外再满足一个条件：非主键列必须直接依赖于主键，不能存在传递依赖。</p>
-<p><strong>核心原则</strong>：不能存在传递函数依赖</p>
-<p><strong>举例</strong>：</p>
-<p><img src="/SQL-%E4%B8%89%E8%8C%83%E5%BC%8F/2022-09-04-14-16-51-image.png"></p>
-<p>    在这张表中，存在传递函数依赖：学号-&gt;系名-&gt;系主任。学号不能直接推出系主任。上面表需要再次拆解。</p>
-<p><img src="/SQL-%E4%B8%89%E8%8C%83%E5%BC%8F/2022-09-04-14-19-01-image.png">        <img src="/SQL-%E4%B8%89%E8%8C%83%E5%BC%8F/2022-09-04-14-19-06-image.png"></p>
+<h1 id="LIMIT函数说明"><a href="#LIMIT函数说明" class="headerlink" title="LIMIT函数说明"></a>LIMIT函数说明</h1><p>从索引_offset（第_offset+1条数据）开始查询_rows条数据。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> _table</span><br><span class="line">LIMIT [_offset], _rows</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>_table：表名</p>
+</li>
+<li><p>_offset：起始索引（从0开始）(可选项，默认为0)</p>
+</li>
+<li><p>_rows：需要查询的行数</p>
+</li>
+</ul>
+<h1 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h1><ul>
+<li><p>降低网络传输的数据量，降低带宽</p>
+</li>
+<li><p>提高查询效率</p>
+</li>
+</ul>
+<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><h2 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h2><p>分页公式</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> _table</span><br><span class="line">LIMIT (page<span class="number">-1</span>)<span class="operator">*</span>pagesize,pagesize;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>page：第几页</p>
+</li>
+<li><p>pagesize：每页数据的条数</p>
+</li>
+</ul>
+<h2 id="查询数据是否存在"><a href="#查询数据是否存在" class="headerlink" title="查询数据是否存在"></a>查询数据是否存在</h2><p>检查表中是否有满足某条件的数据，使用LIMIT提高效率。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--查询是否有小于1990-01-01的日期。效率低，需要全表扫描。</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> _table</span><br><span class="line"><span class="keyword">WHERE</span> _date <span class="operator">&lt;</span> <span class="string">&#x27;1990-01-01&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--只查询是否有第一条。效率高，找到立即停止。</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> _table</span><br><span class="line"><span class="keyword">WHERE</span> _date <span class="operator">&lt;</span> <span class="string">&#x27;1990-01-01&#x27;</span></span><br><span class="line">LIMIT <span class="number">0</span>, <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="查询最大-最小-值"><a href="#查询最大-最小-值" class="headerlink" title="查询最大(最小)值"></a>查询最大(最小)值</h2><p>查询数据最大最小值其实只要一条数据，可以使用LIMIT提高效率。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> _table</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> _id <span class="keyword">DESC</span>    <span class="comment">--最大值</span></span><br><span class="line">LIMIT <span class="number">0</span>, <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -326,14 +323,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/SQL-%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/" rel="prev" title="SQL:函数依赖">
-                  <i class="fa fa-chevron-left"></i> SQL:函数依赖
+                <a href="/%E5%9C%A8CentOS%E4%B8%AD%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEzsh/" rel="prev" title="在CentOS中安装配置zsh">
+                  <i class="fa fa-chevron-left"></i> 在CentOS中安装配置zsh
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/%E5%9C%A8CentOS%E4%B8%AD%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEzsh/" rel="next" title="在CentOS中安装配置zsh">
-                  在CentOS中安装配置zsh <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>

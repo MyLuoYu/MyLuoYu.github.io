@@ -1193,4 +1193,52 @@
         <tag>技术知识</tag>
       </tags>
   </entry>
+  <entry>
+    <title>SQL:分页（LIMIT）</title>
+    <url>/SQL-%E5%88%86%E9%A1%B5/</url>
+    <content><![CDATA[<p>    分页查询是客户端通过传递start(页码)，limit(每页显示的条数)两个参数去分页查询数据库表中的数据。其本质是通过MySQL库中的LIMIT函数，从表中提取连续的若干行。该函数的用法也不仅限于分页，我们可以根据我们的需求改写自己的分页语句。</p>
+<span id="more"></span>
+
+<h1 id="LIMIT函数说明"><a href="#LIMIT函数说明" class="headerlink" title="LIMIT函数说明"></a>LIMIT函数说明</h1><p>从索引_offset（第_offset+1条数据）开始查询_rows条数据。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> _table</span><br><span class="line">LIMIT [_offset], _rows</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>_table：表名</p>
+</li>
+<li><p>_offset：起始索引（从0开始）(可选项，默认为0)</p>
+</li>
+<li><p>_rows：需要查询的行数</p>
+</li>
+</ul>
+<h1 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h1><ul>
+<li><p>降低网络传输的数据量，降低带宽</p>
+</li>
+<li><p>提高查询效率</p>
+</li>
+</ul>
+<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><h2 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h2><p>分页公式</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> _table</span><br><span class="line">LIMIT (page<span class="number">-1</span>)<span class="operator">*</span>pagesize,pagesize;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>page：第几页</p>
+</li>
+<li><p>pagesize：每页数据的条数</p>
+</li>
+</ul>
+<h2 id="查询数据是否存在"><a href="#查询数据是否存在" class="headerlink" title="查询数据是否存在"></a>查询数据是否存在</h2><p>检查表中是否有满足某条件的数据，使用LIMIT提高效率。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">--查询是否有小于1990-01-01的日期。效率低，需要全表扫描。</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> _table</span><br><span class="line"><span class="keyword">WHERE</span> _date <span class="operator">&lt;</span> <span class="string">&#x27;1990-01-01&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">--只查询是否有第一条。效率高，找到立即停止。</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> _table</span><br><span class="line"><span class="keyword">WHERE</span> _date <span class="operator">&lt;</span> <span class="string">&#x27;1990-01-01&#x27;</span></span><br><span class="line">LIMIT <span class="number">0</span>, <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="查询最大-最小-值"><a href="#查询最大-最小-值" class="headerlink" title="查询最大(最小)值"></a>查询最大(最小)值</h2><p>查询数据最大最小值其实只要一条数据，可以使用LIMIT提高效率。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> _table</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> _id <span class="keyword">DESC</span>    <span class="comment">--最大值</span></span><br><span class="line">LIMIT <span class="number">0</span>, <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>IT知识</category>
+      </categories>
+      <tags>
+        <tag>基础知识</tag>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
 </search>
