@@ -1232,6 +1232,9 @@
 
 <h2 id="查询最大-最小-值"><a href="#查询最大-最小-值" class="headerlink" title="查询最大(最小)值"></a>查询最大(最小)值</h2><p>查询数据最大最小值其实只要一条数据，可以使用LIMIT提高效率。</p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> _table</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> _id <span class="keyword">DESC</span>    <span class="comment">--最大值</span></span><br><span class="line">LIMIT <span class="number">0</span>, <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>参考视频：<a href="https://www.bilibili.com/video/BV1fN4y1u7dP?spm_id_from=333.337.search-card.all.click">https://www.bilibili.com/video/BV1fN4y1u7dP?spm_id_from=333.337.search-card.all.click</a></p>
+<p>参考文章：<a href="https://blog.csdn.net/qq_43542074/article/details/101099589">sql如何实现分页_三宝鸭的博客-CSDN博客_sql分页</a></p>
 ]]></content>
       <categories>
         <category>IT知识</category>
