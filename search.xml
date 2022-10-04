@@ -1387,7 +1387,7 @@
 <h2 id="矩阵中的路径-12"><a href="#矩阵中的路径-12" class="headerlink" title="矩阵中的路径-12"></a>矩阵中的路径-12</h2><blockquote>
 <p>给定一个 m x n 二维字符网格 board 和一个字符串单词 word 。如果 word 存在于网格中，返回 true ；否则，返回 false 。</p>
 <p>单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。</p>
-<p>例如，在下面的 3×4 的矩阵中包含单词 “ABCCED”（单词中的字母已标出）。<br><img src="/home/luo/%E6%96%87%E6%A1%A3/Blog/source/_posts/%E7%AE%97%E6%B3%95-%E5%89%91%E6%8C%87Offer/image-20221003111728500.png" alt="loading-ag-2208"></p>
+<p>例如，在下面的 3×4 的矩阵中包含单词 “ABCCED”（单词中的字母已标出）。<br><img src="/%E7%AE%97%E6%B3%95-%E5%89%91%E6%8C%87Offer/image-20221003111728500.png"></p>
 <p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode.cn/problems/ju-zhen-zhong-de-lu-jing-lcof">https://leetcode.cn/problems/ju-zhen-zhong-de-lu-jing-lcof</a></p>
 </blockquote>
 <h3 id="题解思路-9"><a href="#题解思路-9" class="headerlink" title="题解思路"></a>题解思路</h3><p>​    使用回溯法（backtracking）进行求解，它是一种暴力搜索方法，通过搜索所有可能的结果来求解问题。回溯法在一次搜索结束时需要进行回溯（回退），将这一次搜索过程中设置的状态进行清除，从而开始一次新的搜索过程。例如下图示例中，从 f 开始，下一步有 4 种搜索可能，如果先搜索 b，需要将 b 标记为已经使用，防止重复使用。在这一次搜索结束之后，需要将 b 的已经使用状态清除，并搜索 c。</p>
