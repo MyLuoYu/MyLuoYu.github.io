@@ -606,6 +606,497 @@
       </tags>
   </entry>
   <entry>
+    <title>Hadoop原理</title>
+    <url>/Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>本文主要介绍了Hadoop的基本构成（RPC、HDFS、Yarn、MapReduce）。使读者能够理解Hadoop的基本原理。</p>
+<span id="more"></span>
+
+<h1 id="Hadoop概述"><a href="#Hadoop概述" class="headerlink" title="Hadoop概述"></a>Hadoop概述</h1><h2 id="Hadoop是什么"><a href="#Hadoop是什么" class="headerlink" title="Hadoop是什么"></a>Hadoop是什么</h2><ol>
+<li>Hadoop是一个由A pache基金会所开发的分布式系统基础架构。</li>
+<li>主要解决,海量数据的存储和海量数据的分析计算问题。</li>
+<li>广义上来说,Hadoop通常是指一个更广泛的概念——Hadoop生态圈。</li>
+</ol>
+<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/image-20221012210211271.png" alt="image-20221012210211271"></p>
+<h2 id="Hadoop-三大发行版本-了解"><a href="#Hadoop-三大发行版本-了解" class="headerlink" title="Hadoop 三大发行版本(了解)"></a>Hadoop 三大发行版本(了解)</h2><h3 id="版本介绍"><a href="#版本介绍" class="headerlink" title="版本介绍"></a>版本介绍</h3><p>Hadoop 三大发行版本:Apache、Cloudera、Hortonworks。</p>
+<ul>
+<li>Apache 版本最原始(最基础)的版本,对于入门学习最好。2006</li>
+<li>Cloudera 内部集成了很多大数据框架,对应产品 CDH。2008</li>
+<li>Hortonworks 文档较好,对应产品 HDP。2011</li>
+<li>Hortonworks 现在已经被 Cloudera 公司收购,推出新的品牌 CDP。</li>
+</ul>
+<h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h3><h4 id="Apache-Hadoop"><a href="#Apache-Hadoop" class="headerlink" title="Apache Hadoop"></a>Apache Hadoop</h4><p>官网地址：<a href="http://hadoop.apache.org/releases.html">http://hadoop.apache.org/releases.html</a><br>下载地址：<a href="https://archive.apache.org/dist/hadoop/common/">https://archive.apache.org/dist/hadoop/common/</a></p>
+<h4 id="Cloudera-Hadoop"><a href="#Cloudera-Hadoop" class="headerlink" title="Cloudera Hadoop"></a>Cloudera Hadoop</h4><p>官网地址：<a href="https://www.cloudera.com/downloads/cdh/5-10-0.html">https://www.cloudera.com/downloads/cdh/5-10-0.html</a><br>下载地址：<a href="http://archive-primary.cloudera.com/cdh5/cdh/5/">http://archive-primary.cloudera.com/cdh5/cdh/5/</a></p>
+<h4 id="Hortonworks-Hadoop"><a href="#Hortonworks-Hadoop" class="headerlink" title="Hortonworks Hadoop"></a>Hortonworks Hadoop</h4><p>官网地址：<a href="https://hortonworks.com/products/data-center/hdp/">https://hortonworks.com/products/data-center/hdp/</a><br>下载地址：<a href="https://hortonworks.com/downloads/#data-platform">https://hortonworks.com/downloads/#data-platform</a></p>
+<h2 id="Hadoop-优势-4-高"><a href="#Hadoop-优势-4-高" class="headerlink" title="Hadoop 优势(4 高)"></a>Hadoop 优势(4 高)</h2><ul>
+<li>高可靠性:Hadoop底层维护多个数据副本,所以即使Hadoop某个计算元素或存储出现故障,也不会导致数据的丢失。</li>
+</ul>
+<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/image-20221012194757354.png" alt="image-20221012194757354"></p>
+<ul>
+<li>高扩展性:在集群间分配任务数据,可方便的扩展数以千计的节点。</li>
+</ul>
+<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/image-20221012194910090.png" alt="image-20221012194910090"></p>
+<ul>
+<li>高效性:在MapReduce的思想下,Hadoop是并行工作的,以加快任务处理速度。</li>
+</ul>
+<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/image-20221012195023866.png" alt="image-20221012195023866"></p>
+<ul>
+<li>高容错性:能够自动将失败的任务重新分配。</li>
+</ul>
+<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/2022-10-12_19-50.png" alt="2022-10-12_19-50.png"></p>
+<h2 id="Hadoop-组成-面试重点"><a href="#Hadoop-组成-面试重点" class="headerlink" title="Hadoop 组成(面试重点)"></a>Hadoop 组成(面试重点)</h2><h3 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h3><p>Hadoop主要有4大模块：HDFS、Yarn、MapReduce、Common</p>
+<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/image-20221012195923918.png" alt="image-20221012195923918"></p>
+<h3 id="Common架构概述"><a href="#Common架构概述" class="headerlink" title="Common架构概述"></a>Common架构概述</h3><p>Common(公共)模块更多地隐藏在幕后，为框架提供基础支持。从Hadoop 0.20版本开始，将原来Hadoop项目的Core部分更名为Hadoop Common</p>
+<p>Common：为Hadoop其他模块提供支持实用程序，是整体Hadoop项目的核心。其主要包括一组分布式文件系统、通用I&#x2F;O组件与接口(序列化远程过程调用RPC、持久化数据结构)</p>
+<h3 id="HDFS-架构概述"><a href="#HDFS-架构概述" class="headerlink" title="HDFS 架构概述"></a>HDFS 架构概述</h3><p>Hadoop Distributed File System,简称 HDFS,是一个分布式文件系统。</p>
+<p>HDFS下分3大组件：NameNode(nn)、DataNode(dn)、Secondary NameNode(2nn)</p>
+<ol>
+<li>NameNode：存储文件的元数据,如文件名,文件目录结构,文件属性(生成时间、副本数、文件权限),以及每个文件的块列表和块所在的DataNode等。</li>
+<li>DataNode：在本地文件系统存储文件块数据,以及块数据的校验和。</li>
+<li>Secondary NameNode：在本地文件系统存储文件块数据,以及块数据的校验和。Secondary NameNode并不会存储所有的数据，NameNode损坏只能恢复部分数据。</li>
+</ol>
+<h3 id="YARN-架构概述"><a href="#YARN-架构概述" class="headerlink" title="YARN 架构概述"></a>YARN 架构概述</h3><p>Yet Another Resource Negotiator 简称 YARN ,另一种资源协调者,是 Hadoop 的资源管理器。</p>
+<p>YARN下分4大组件：ResourceManager(RM)、NodeManager(NM)、ApplicationMaster(AM)、Container</p>
+<ol>
+<li>ResourceManager(RM)：整个集群资源(内存、CPU等)的老大</li>
+<li>NodeManager(NM)：整个集群资源(内存、CPU等)的老大</li>
+<li>ApplicationMaster(AM)：单个任务运行的老大</li>
+<li>Container：容器,相当一台独立的服务器,里面封装了任务运行所需要的资源,如内存、CPU、磁盘、网络等。</li>
+</ol>
+<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/2022-10-12_20-27.png" alt="2022-10-12_20-27.png"></p>
+<h3 id="MapReduce-架构概述"><a href="#MapReduce-架构概述" class="headerlink" title="MapReduce 架构概述"></a>MapReduce 架构概述</h3><p>MapReduce 将计算过程分为两个阶段:Map 和 Reduce</p>
+<ol>
+<li>Map 阶段并行处理输入数据</li>
+<li>Reduce 阶段对 Map 结果进行汇总</li>
+</ol>
+<p>MapReduce是一个软件框架，基于该框架能够容易地编写应用程序，这些应用程序能够运行在由上千个商用机器组成的大集群上，并以一种可靠的，具有容错能力的方式并行地处理上TB级别的海量数据集。</p>
+<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/2022-10-12_20-35.png" alt="2022-10-12_20-35.png"></p>
+<h3 id="HDFS、YARN、MapReduce-三者关系"><a href="#HDFS、YARN、MapReduce-三者关系" class="headerlink" title="HDFS、YARN、MapReduce 三者关系"></a>HDFS、YARN、MapReduce 三者关系</h3><p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/image-20221012204712903.png" alt="image-20221012204712903"></p>
+<h2 id="Hadoop-目录结构"><a href="#Hadoop-目录结构" class="headerlink" title="Hadoop 目录结构"></a>Hadoop 目录结构</h2><h3 id="查看-Hadoop-目录结构"><a href="#查看-Hadoop-目录结构" class="headerlink" title="查看 Hadoop 目录结构"></a>查看 Hadoop 目录结构</h3><p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/image-20221012205649812.png" alt="image-20221012205649812"></p>
+<h3 id="重要目录"><a href="#重要目录" class="headerlink" title="重要目录"></a>重要目录</h3><ol>
+<li>bin 目录:存放对 Hadoop 相关服务(hdfs,yarn,mapred)进行操作的脚本</li>
+<li>etc 目录:Hadoop 的配置文件目录,存放 Hadoop 的配置文件</li>
+<li>lib 目录:存放 Hadoop 的本地库(对数据进行压缩解压缩功能)</li>
+<li>sbin 目录:存放启动或停止 Hadoop 相关服务的脚本</li>
+<li>share 目录:存放 Hadoop 的依赖 jar 包、文档、和官方案例</li>
+</ol>
+<h2 id="Hadoop-运行模式"><a href="#Hadoop-运行模式" class="headerlink" title="Hadoop 运行模式"></a>Hadoop 运行模式</h2><p>Hadoop 运行模式包括:本地模式、伪分布式模式、完全分布式模式。</p>
+<ol>
+<li>本地模式：单机运行,只是用来演示一下官方案例。生产环境不用。</li>
+<li>伪分布式模式：也是单机运行,但是具备 Hadoop 集群的所有功能,一台服务器模拟一个分布式的环境。个别缺钱的公司用来测试,生产环境不用。</li>
+<li>完全分布式模式：多台服务器组成分布式环境。生产环境使用。</li>
+</ol>
+<h1 id="RPC"><a href="#RPC" class="headerlink" title="RPC"></a>RPC</h1><p>​        RPC（Remote Procedure Call）远程过程调用协议，一种通过网络从远程计算机上请求服务，而不需要了解底层网络技术的协议。其过程就是业务处理、计算任务，更直白的说，就是程序，就是想调用本地方法一样调用远程的过程</p>
+<p>​        Hadoop 的 RPC 是 Hadoop 的核心通信机制，RPC 主要用于所有 Hadoop 的组件元数据交换，如 MapReduce、Hadoop 分布式系统（HDFS）和Hadoop 的数据库（Hbase）。</p>
+<h2 id="RPC的特点"><a href="#RPC的特点" class="headerlink" title="RPC的特点"></a>RPC的特点</h2><ol>
+<li>透明性：远程调用其他机器上的程序，对用户来说就像是调用本地方法一样；</li>
+<li>高性能：RPC Server能够并发处理多个来自Client的请求；</li>
+<li>可控性：jdk中已经提供了一个RPC框架—RMI，但是该PRC框架过于重量级并且可控之处比较少，所以Hadoop RPC实现了自定义的PRC框架。</li>
+</ol>
+<h2 id="PRC工作原理"><a href="#PRC工作原理" class="headerlink" title="PRC工作原理"></a>PRC工作原理</h2><p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/Hadoop-RPC%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86.png"></p>
+<ol>
+<li>服务消费方（client）调用以本地调用方式调用服务；</li>
+<li>client stub接收到调用后负责将方法、参数等组装成能够进行网络传输的消息体；</li>
+<li>client stub找到服务地址，通过RPCRuntime实例将消息发送到服务端；</li>
+<li>RPCRuntime实例收到请求后交给server stub进行解码；</li>
+<li>server stub根据解码结果调用本地的服务；</li>
+<li>本地服务执行并将结果返回给server stub；</li>
+<li>server stub将返回结果打包成消息并发送至消费方；</li>
+<li>client stub接收到消息，并进行解码；</li>
+<li>服务消费方得到最终结果。</li>
+</ol>
+<h2 id="Hadoop中的RPC机制"><a href="#Hadoop中的RPC机制" class="headerlink" title="Hadoop中的RPC机制"></a>Hadoop中的RPC机制</h2><p>​        同其他RPC框架一样，Hadoop RPC分为四个部分：</p>
+<ol>
+<li>序列化层：Clent与Server端通信传递的信息采用了Hadoop里提供的序列化类或自定义的Writable类型；</li>
+<li>函数调用层：Hadoop RPC通过动态代理以及java反射实现函数调用；</li>
+<li>网络传输层：Hadoop RPC采用了基于TCP&#x2F;IP的socket机制；</li>
+<li>服务器端框架层：RPC Server利用java NIO以及采用了事件驱动的I&#x2F;O模型，提高RPC Server的并发处理能力；</li>
+</ol>
+<p>　　<strong>Hadoop RPC在整个Hadoop中应用非常广泛</strong>，Client、DataNode、NameNode之间的通讯全靠它了。例如：我们平时操作HDFS的时候，使用的是FileSystem类，它的内部有个DFSClient对象，这个对象负责与NameNode打交道。在运行时，DFSClient在本地创建一个NameNode的代理，然后就操作这个代理，这个代理就会通过网络，远程调用到NameNode的方法，也能返回值。</p>
+<h2 id="Hadoop-RPC设计技术"><a href="#Hadoop-RPC设计技术" class="headerlink" title="Hadoop RPC设计技术"></a>Hadoop RPC设计技术</h2><ul>
+<li><p><strong>动态代理</strong></p>
+<p>  动态代理可以提供对另一个对象的访问，同时隐藏实际对象的具体事实，因为代理对象对客户隐藏了实际对象。</p>
+</li>
+<li><p><strong>反射—动态加载类</strong></p>
+<p>  反射机制实在运动状态中，对任意一个类，都能够知道这个类所有属性和方法；对于任意一个对象，都能够调用他的任意一个方法和属性。</p>
+</li>
+<li><p><strong>序列化</strong></p>
+<p>  什么是序列化？序列化就是将数据结构或对象转换成二进制串的过程，也就是编码的过程。</p>
+<p>  什么是反序列化？将在序列化过程中所生成的二进制串转换成数据结构或者对象的过程。</p>
+<p>  为什么需要序列化？转换为二进制串后才好进行网络传输嘛！</p>
+<p>  为什么需要反序列化？将二进制转换为对象才好进行后续处理！</p>
+</li>
+<li><p><strong>非阻塞的异步IO</strong>（NIO）</p>
+<p>  非阻塞的异步IO指的是用户调用读写方法是不阻塞的，立刻返回，而且用户不需要关注读写，只需要提供回调操作。内核线程在完成读写后回调用户提供的callback</p>
+</li>
+</ul>
+<h1 id="HDFS"><a href="#HDFS" class="headerlink" title="HDFS"></a>HDFS</h1><p>​        HDFS(Hadoop Distributed File System),它是一个文件系统,用于存储文件,通过目录树来定位文件;其次,它是分布式的,由很多服务器联合起来实现其功能,集群中的服务器有各自的角色。</p>
+<p>​        HDFS 的使用场景:适合一次写入,多次读出的场景。一个文件经过创建、写入和关闭之后就不需要改变。</p>
+<p>​        HDFS采用master&#x2F;slave架构。一个HDFS集群由一个NameNode和一定数目的DataNode组成。</p>
+<h2 id="HDFS-优缺点"><a href="#HDFS-优缺点" class="headerlink" title="HDFS 优缺点"></a>HDFS 优缺点</h2><h3 id="HDFS优点"><a href="#HDFS优点" class="headerlink" title="HDFS优点"></a>HDFS优点</h3><ol>
+<li><p>高容错性</p>
+<ul>
+<li><p>数据自动保存多个副本。它通过增加副本的形式,提高容错性。</p>
+<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/image-20221016211621397.png" alt="image-20221016211621397"></p>
+</li>
+<li><p>某一个副本丢失以后,它可以自动恢复。</p>
+<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/image-20221016211651087.png" alt="image-20221016211651087"></p>
+</li>
+</ul>
+</li>
+<li><p>适合处理大数据</p>
+<ul>
+<li>数据规模:能够处理数据规模达到GB、T B、甚至PB级别的数据;</li>
+<li>文件规模:能够处理百万规模以上的文件数量,数量相当之大。</li>
+</ul>
+</li>
+<li><p>可构建在廉价机器上,通过多副本机制,提高可靠性。</p>
+</li>
+</ol>
+<h3 id="HDFS缺点"><a href="#HDFS缺点" class="headerlink" title="HDFS缺点"></a>HDFS缺点</h3><ol>
+<li><p>不适合低延时数据访问,比如毫秒级的存储数据,是做不到的。</p>
+</li>
+<li><p>无法高效的对大量小文件进行存储。</p>
+<ul>
+<li>存储大量小文件的话,它会占用NameNode大量的内存来存储文件目录和块信息。这样是不可取的,因为NameNode的内存总是有限的。</li>
+<li>小文件存储的寻址时间会超过读取时间,它违反了HDFS的设计目标。</li>
+</ul>
+</li>
+<li><p>不支持并发写入、文件随机修改。</p>
+<ul>
+<li><p>仅支持数据append(追加),不支持文件的随机修改。</p>
+</li>
+<li><p>一个文件只能有一个写,不允许多个线程同时写。</p>
+<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/image-20221016212701958.png" alt="image-20221016212701958"></p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="HDFS-组成架构"><a href="#HDFS-组成架构" class="headerlink" title="HDFS 组成架构"></a>HDFS 组成架构</h2><p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/image-20221016213946647.png" alt="image-20221016213946647"></p>
+<ol>
+<li>NameNode(nn):就是Master,它是一个主管、管理者。<ol>
+<li>管理HDFS的命名空间;</li>
+<li>配置副本策略;</li>
+<li>管理数据块(Block)映射信息;</li>
+<li>处理客户端读写请求;</li>
+</ol>
+</li>
+<li>DataNode:就是Slave。NameNode下达命令,DataNode执行实际的操作。<ol>
+<li>存储实际的数据块;</li>
+<li>执行数据块的读&#x2F;写操作;</li>
+</ol>
+</li>
+<li>Client:就是客户端。<ol>
+<li>文件切分。文件上传HDF S的时候,Client将文件切分成一个一个的Block,然后进行上传;</li>
+<li>与NameNode交互,获取文件的位置信息;</li>
+<li>与DataNode交互,读取或者写入数据;</li>
+<li>Client提供一些命令来管理HDFS,比如NameNode格式化;</li>
+<li>Client可以通过一些命令来访问HDFS,比如对HDFS增删查改操作;</li>
+</ol>
+</li>
+<li>Block：文件系统读写的最小单元。<ol>
+<li>可根据实际的工作效率和集群吞吐量修改Block大小;</li>
+<li>切分时按大小进行切分，不足值单独成块;</li>
+</ol>
+</li>
+<li>Secondary NameNode:并非NameNode的热备。当NameNode挂掉的时候,它并不能马上替换NameNode并提供服务。<ol>
+<li>辅助NameNode,分担其工作量,比如定期合并Fsimage和Edits,并推送给NameNode ;</li>
+<li>在紧急情况下,可辅助恢复NameNode。</li>
+</ol>
+</li>
+</ol>
+<h2 id="HDFS-文件块大小-面试重点"><a href="#HDFS-文件块大小-面试重点" class="headerlink" title="HDFS 文件块大小(面试重点)"></a>HDFS 文件块大小(面试重点)</h2><ol>
+<li>HDFS的块设置太小,会增加寻址时间,程序一直在找块的开始位置;</li>
+<li>如果块设置的太大,从磁盘传输数据的时间会明显大于定位这个块开始位置所需的时间。导致程序在处理这块数据时,会非常慢。</li>
+<li>HDFS块的大小设置主要取决于磁盘传输速率。</li>
+<li>HDFS中 的 文 件 在 物 理 上 是 分 块 存 储 ( Block ) , 块 的 大 小 可 以 通 过 配 置 参 数( dfs.blocksize)来规定,默认大小在Hadoop2.x&#x2F;3.x版本中是128M,1.x版本中是64M。</li>
+<li>Block计算公式：<ol>
+<li>如果寻址时间约为10ms,即查找到目标block的时间为10ms。</li>
+<li>寻址时间为传输时间的1%时,则为最佳状态(专家)。因此,传输时间&#x3D;10ms&#x2F;0.01&#x3D;1000ms&#x3D;1s</li>
+<li>而目前磁盘的传输速率普遍为100MB&#x2F;s。要实际情况而定</li>
+<li>block大小&#x3D;1s*100MB&#x2F;s&#x3D;100MB</li>
+</ol>
+</li>
+</ol>
+<h2 id="HDFS的副本复制"><a href="#HDFS的副本复制" class="headerlink" title="HDFS的副本复制"></a>HDFS的副本复制</h2><p>​        HDFS被设计成能够在一个大集群中跨机器可靠地存储超大文件。它将每个文件存储成一系列的数据块，除了最后一个，所有的数据块都是同样大小的。为了容错，文件的所有数据块都会有副本。每个文件的数据块大小和副本系数都是可配置的。应用程序可以指定某个文件的副本数目。副本系数可以在文件创建的时候指定，也可以在之后改变。HDFS中的文件都是一次性写入的，并且严格要求在任何时候只能有一个写入者。</p>
+<p>​        Namenode全权管理数据块的复制，它周期性地从集群中的每个Datanode接收心跳信号和块状态报告(Blockreport)。接收到心跳信号意味着该Datanode节点工作正常。块状态报告包含了一个该Datanode上所有数据块的列表。</p>
+<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/image-20221017152744622.png" alt="image-20221017152744622"></p>
+<p>副本节点选择:</p>
+<ol>
+<li>第一个副本在Client所处的节点上。如果客户端在集群外,随机选一个。</li>
+<li>第二个副本在另一个机架的随机一个节点</li>
+<li>第三个副本在第二个副本所在机架的随机节点</li>
+</ol>
+<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/image-20221017153441640.png" alt="image-20221017153441640"></p>
+<h2 id="HDFS-的读写流程-面试重点"><a href="#HDFS-的读写流程-面试重点" class="headerlink" title="HDFS 的读写流程(面试重点)"></a>HDFS 的读写流程(面试重点)</h2><h3 id="HDFS-读数据流程"><a href="#HDFS-读数据流程" class="headerlink" title="HDFS 读数据流程"></a>HDFS 读数据流程</h3><p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/hdsf-read.png" alt="hdsf-read"></p>
+<ol>
+<li>首先调用FileSystem对象的open方法，其实是一个DistributedFileSystem类的实例。</li>
+<li>客户端通过 DistributedFileSystem 向 NameNode 请求下载文件, NameNode通过查询元数据,找到文件块所在的 DataNode 地址，并按照Hadoop结构拓扑排序，距离客户端近的排在前面。</li>
+<li>前两步会返回一个FSDataInputStream对象，该对象会被封装成DFSInputStream对象以方便管理DataNode和NameNode数据流。客户端调用read方法DFSInputStream找到最近的第一个数据所在的DataNode连接。</li>
+<li>客户端以 Packet 为单位接收,先在本地缓存,然后写入目标文件。</li>
+<li>如果第一块读完了系统会关闭（close）指向第一块的DataNode连接，接着读取第二块。</li>
+</ol>
+<h3 id="HDFS-写数据流程"><a href="#HDFS-写数据流程" class="headerlink" title="HDFS 写数据流程"></a>HDFS 写数据流程</h3><p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/hdfs-write.png" alt="hdfs-write.png"></p>
+<ol>
+<li>客 户 端 通 过 Distributed FileSystem 模 块 向 NameNode 请 求 上 传 文 件 ,NameNode 检查目标文件是否已存在,父目录是否存在。</li>
+<li>NameNode 返回是否可以上传。</li>
+<li>客户端请求第一个 Block 上传到哪几个 DataNode 服务器上。</li>
+<li>NameNode 返回 3 个 DataNode 节点，分别为 dn1、dn2、dn3。。</li>
+<li>客户端通过 FSDataOutputStream 模块请求 dn1 上传数据, dn1 收到请求会继续调用 dn2,然后 dn2 调用 dn3,将这个通信管道建立完成。<br>NameNode会返回一个Ack到前一个NameNode逐级应答客户端。</li>
+<li>客户端开始往 dn1 上传第一个 Block (先从磁盘读取数据放到一个本地内存缓存),以 Packet 为单位,dn1 收到一个 Packet 就会传给 dn2,dn2 传给 dn3;dn1 每传一个packet 会放入一个应答队列等待应答。</li>
+<li>当一个 Block 传输完成之后,客户端再次请求 NameNode 上传第二个 Block 的服务器。(重复执行 5-12 步)。</li>
+</ol>
+<h2 id="HDFS数据删除与恢复"><a href="#HDFS数据删除与恢复" class="headerlink" title="HDFS数据删除与恢复"></a>HDFS数据删除与恢复</h2><p>​        HDFS的数据删除与传统的数据删除有很大的区别。在传统文件系统中要删除文件，首先要找到文件位置，然后把文件删除。而在HDFS中，由于文件是一个大文件被切割成若干个小文件Block，Block以多副本的形式存储在不同的DataNode中，文件位置的存储位置的映射在NameNode中，如果要找到位置多线程一次删除会给NameNode很大的压力，且删除时间长。所以HDFS把删除任务拆解为不同的线程。<br>​        当HDFS的数据被删除时，不会立即从HDFS中删除。而是将文件移动到&#x2F;trash中。只要文件还在&#x2F;trash目录中就可以快速恢复。文件的保存时间是有限的，只要超过时间线文件就会被删除。当前默认的时间为0秒，即删除的文件不存储在&#x2F;trash中，该值可以在core-site.xml中配置参数fs.trash.interval进行设定。</p>
+<h1 id="YARN"><a href="#YARN" class="headerlink" title="YARN"></a>YARN</h1><p>​        YARN 是一个资源调度平台,负责为运算程序提供服务器运算资源,相当于一个分布式的操作系统平台,而 MapReduce 等运算程序则相当于运行于操作系统之上的应用程序。</p>
+<h2 id="Yarn-基础架构"><a href="#Yarn-基础架构" class="headerlink" title="Yarn 基础架构"></a>Yarn 基础架构</h2><blockquote>
+<p> YARN 主 要 由 ：ResourceManager 、 NodeManager 、 ApplicationMaster 、Container 等组件构成。</p>
+</blockquote>
+<p>各组件的作用：</p>
+<ul>
+<li><p><strong>ResourceManager</strong></p>
+<ol>
+<li>处理客户端请求</li>
+<li>监控NodeManager</li>
+<li>启动或监控ApplicationMaster</li>
+<li>资源的分配与调度</li>
+</ol>
+</li>
+<li><p><strong>NodeManager</strong></p>
+<ol>
+<li>管理单个节点上的资源</li>
+<li>处理来自ResourceManager的命令</li>
+<li>处理来自ApplicationMaster的命令</li>
+</ol>
+</li>
+<li><p><strong>ApplicationMaster</strong></p>
+<ol>
+<li>为应用程序申请资源并分配给内部的任务</li>
+<li>任务的监控与容错</li>
+</ol>
+</li>
+<li><p><strong>Container</strong></p>
+<ol>
+<li>Container 是 YARN 中的资源抽象,它封装了某个节点上的多维度资源,如内存、CPU、磁盘、网络等。</li>
+</ol>
+</li>
+</ul>
+<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/yarn-%E6%9E%B6%E6%9E%84.png" alt="yarn-架构.png"></p>
+<p>工作流程：</p>
+<ol>
+<li><p>Client向ResourceManager提交作业（可以是Spark&#x2F;Mapreduce作业）</p>
+</li>
+<li><p>ResourceManager会为这个作业分配一个container</p>
+</li>
+<li><p>ResourceManager与NodeManager通信，要求NodeManger在刚刚分配好的container上启动应用程序的Application Master</p>
+</li>
+<li><p>Application Master先去向ResourceManager注册，而后ResourceManager会为各个任务申请资源，并监控运行情况</p>
+</li>
+<li><p>Application Master采用轮询（polling）方式向ResourceManager申请并领取资源（通过RPC协议通信）</p>
+</li>
+<li><p>Application Manager申请到了资源以后，就和NodeManager通信，要求NodeManager启动任务</p>
+</li>
+<li><p>最后，NodeManger启动作业对应的任务。</p>
+</li>
+</ol>
+<h2 id="Yarn-工作机制"><a href="#Yarn-工作机制" class="headerlink" title="Yarn 工作机制"></a>Yarn 工作机制</h2><blockquote>
+<p>下图以MR程序任务提交为例。Container 是 YARN 中 的资源抽象</p>
+<p>在 Spark 中负责准备 Task 环境和执行的是 Executor</p>
+<p>在 Flink 中 TaskManager 是任务容器</p>
+</blockquote>
+<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/yarn-%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6.png" alt="yarn-工作机制"></p>
+<ol>
+<li>MR 程序提交到客户端所在的节点。</li>
+<li>YarnRunner 向 ResourceManager 申请一个 Application。</li>
+<li>RM 将该应用程序的资源路径返回给 YarnRunner。</li>
+<li>该程序将运行所需资源提交到 HDFS 上。</li>
+<li>程序资源提交完毕后，申请运行 mrAppMaster。</li>
+<li>RM 将用户的请求初始化成一个 Task。</li>
+<li>其中一个 NodeManager 领取到 Task 任务。</li>
+<li>该 NodeManager 创建容器 Container，并产生 MRAppmaster 。</li>
+<li>Container 从 HDFS 上拷贝资源到本地。</li>
+<li>MRAppmaster 向 RM 申请运行 MapTask 资源。</li>
+<li>RM 将运行 MapTask 任务分配给另外两个 NodeManager，另两个 NodeManager 分 别领取任务并创建容器。</li>
+<li>MR 向两个接收到任务的 NodeManager 发送程序启动脚本，这两个 NodeManager 分别启动 MapTask，MapTask 对数据分区排序。</li>
+<li>MrAppMaster 等待所有 MapTask 运行完毕后，向 RM 申请容器，运行 ReduceTask。</li>
+<li>ReduceTask 向 MapTask 获取相应分区的数据。</li>
+<li>程序运行完毕后，MR 会向 RM 申请注销自己。</li>
+</ol>
+<h2 id="Yarn-调度器和调度算法"><a href="#Yarn-调度器和调度算法" class="headerlink" title="Yarn 调度器和调度算法"></a>Yarn 调度器和调度算法</h2><h3 id="先进先出调度器-FIFO"><a href="#先进先出调度器-FIFO" class="headerlink" title="先进先出调度器(FIFO)"></a>先进先出调度器(FIFO)</h3><h4 id="先进先出调度器特点"><a href="#先进先出调度器特点" class="headerlink" title="先进先出调度器特点"></a>先进先出调度器特点</h4><p>FIFO 调度器(First In First Out):单队列,根据提交作业的先后顺序,先来先服务。</p>
+<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/image-20221022190341795.png" alt="image-20221022190341795"></p>
+<h4 id="先进先出调度器的优缺点"><a href="#先进先出调度器的优缺点" class="headerlink" title="先进先出调度器的优缺点"></a>先进先出调度器的优缺点</h4><p><strong>优点</strong>:简单易懂;<br><strong>缺点</strong>:不支持多队列,生产环境很少使用;</p>
+<h3 id="容量调度器-Capacity-Scheduler"><a href="#容量调度器-Capacity-Scheduler" class="headerlink" title="容量调度器(Capacity Scheduler)"></a>容量调度器(Capacity Scheduler)</h3><h4 id="容量调度器特点"><a href="#容量调度器特点" class="headerlink" title="容量调度器特点"></a>容量调度器特点</h4><p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/%E5%AE%B9%E9%87%8F%E8%B0%83%E5%BA%A6%E5%99%A8%E7%89%B9%E7%82%B9.png" alt="容量调度器特点"></p>
+<ol>
+<li><p><strong>多队列</strong>:每个队列可配置一定的资源量,每个队列采用FIFO调度策略。</p>
+</li>
+<li><p><strong>容量保证</strong>:管理员可为每个队列设置资源最低保证和资源使用上限。</p>
+</li>
+<li><p><strong>灵活性</strong>:如果一个队列中的资源有剩余,可以暂时共享给那些需要资源的队列,而一旦该队列有新的应用程序提交,则其他队列借调的资源会归还给该队列。</p>
+</li>
+<li><p><strong>多租户</strong>:</p>
+<ol>
+<li>支持多用户共享集群和多应用程序同时运行。</li>
+<li>为了防止同一个用户的作业独占队列中的资源,该调度器会对同一用户提交的作业所占资源量进行限定。</li>
+</ol>
+</li>
+<li><p><strong>安全保证</strong>：每个队列有严格的ACL列表规定它的访问用户，每个用户可指定哪些用户允许查看自己应用程序的运行状态或者控制应用程序（比如杀死应用程序）。此外，管理员可指定队列管理员和集群系统管理员</p>
+</li>
+<li><p><strong>动态更新配置文件</strong>：管理员可根据需要动态修改各种配置参数，以实现在线集群管理</p>
+</li>
+</ol>
+<h4 id="容量调度器资源分配算法"><a href="#容量调度器资源分配算法" class="headerlink" title="容量调度器资源分配算法"></a>容量调度器资源分配算法</h4><p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/%E5%AE%B9%E9%87%8F%E8%B0%83%E5%BA%A6%E5%99%A8%E8%B5%84%E6%BA%90%E5%88%86%E9%85%8D%E7%AE%97%E6%B3%95.png" alt="容量调度器资源分配算法"></p>
+<ol>
+<li><strong>队列资源分配</strong><ul>
+<li>从root开始,使用深度优先算法,优先选择资源占用率最低的队列分配资源。</li>
+</ul>
+</li>
+<li><strong>作业资源分配</strong><ul>
+<li>默认按照提交作业的优先级和提交时间顺序分配资源。</li>
+</ul>
+</li>
+<li><strong>容器资源分配</strong><ol>
+<li>按照容器的优先级分配资源;</li>
+<li>如果优先级相同,按照数据本地性原则:<ol>
+<li>任务和数据在同一节点</li>
+<li>任务和数据在同一机架</li>
+<li>任务和数据不在同一节点也不在同一机架</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="公平调度器-Fair-Scheduler"><a href="#公平调度器-Fair-Scheduler" class="headerlink" title="公平调度器(Fair Scheduler)"></a>公平调度器(Fair Scheduler)</h3><h4 id="公平调度器特点"><a href="#公平调度器特点" class="headerlink" title="公平调度器特点"></a>公平调度器特点</h4><p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/%E5%85%AC%E5%B9%B3%E8%B0%83%E5%BA%A6%E5%99%A8%E7%89%B9%E7%82%B9.png" alt="公平调度器特点"></p>
+<ol>
+<li><strong>与容量调度器相同点</strong><ul>
+<li>多队列:支持多队列多作业</li>
+<li>容量保证:管理员可为每个队列设置资源最低保证和资源使用上线</li>
+<li>灵活性:如果一个队列中的资源有剩余,可以暂时共享给那些需要资源的队列,而一旦该队列有新的应用程序提交,则其他队列借调的资源会归还给该队列。</li>
+<li>多租户:支持多用户共享集群和多应用程序同时运行;为了防止同一个用户的作业独占队列中的资源,该调度器会对同一用户提交的作业所占资源量进行限定。</li>
+</ul>
+</li>
+<li><strong>与容量调度器不同点</strong><ul>
+<li>核心调度策略不同<ul>
+<li>容量调度器:优先选择资源利用率低的队列</li>
+<li>公平调度器:优先选择对资源的缺额比例大的</li>
+</ul>
+</li>
+<li>每个队列可以单独设置资源分配方式<ul>
+<li>容量调度器:FIFO 、 DRF</li>
+<li>公平调度器:FIFO 、FAIR、DRF</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="公平调度器-缺额"><a href="#公平调度器-缺额" class="headerlink" title="公平调度器-缺额"></a>公平调度器-缺额</h4><p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/%E5%85%AC%E5%B9%B3%E8%B0%83%E5%BA%A6%E5%99%A8-%E7%BC%BA%E9%A2%9D.png" alt="公平调度器-缺额"></p>
+<ol>
+<li>公平调度器设计目标是:在时间尺度上,所有作业获得公平的资源。某一时刻一个作业应获资源和实际获取资源的差距叫“ 缺额”</li>
+<li>调度器会优先为缺额大的作业分配资源</li>
+</ol>
+<h1 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h1><p>​    MapReduce 是一个分布式运算程序的编程框架,是用户开发“基于 Hadoop 的数据分析应用”的核心框架。<br>​    MapReduce 核心功能是将用户编写的业务逻辑代码和自带默认组件整合成一个完整的分布式运算程序,并发运行在一个 Hadoop 集群上。</p>
+<h2 id="MapReduce-优缺点"><a href="#MapReduce-优缺点" class="headerlink" title="MapReduce 优缺点"></a>MapReduce 优缺点</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li><strong>MapReduce 易于编程</strong>：<ul>
+<li>它简单的实现一些接口,就可以完成一个分布式程序,这个分布式程序可以分布到大量廉价的 PC 机器上运行。也就是说你写一个分布式程序,跟写一个简单的串行程序是一模一样的。就是因为这个特点使得 MapReduce 编程变得非常流行。</li>
+</ul>
+</li>
+<li><strong>良好的扩展性</strong>：<ul>
+<li>当你的计算资源不能得到满足的时候,你可以通过简单的增加机器来扩展它的计算能力。</li>
+</ul>
+</li>
+<li><strong>高容错性</strong>：<ul>
+<li>MapReduce 设计的初衷就是使程序能够部署在廉价的 PC 机器上,这就要求它具有很高的容错性。比如其中一台机器挂了,它可以把上面的计算任务转移到另外一个节点上运行,不至于这个任务运行失败,而且这个过程不需要人工参与,而完全是由 Hadoop 内部完成的。</li>
+</ul>
+</li>
+<li><strong>适合 PB 级以上海量数据的离线处理</strong>：<ul>
+<li>可以实现上千台服务器集群并发工作,提供数据处理能力。</li>
+</ul>
+</li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li><p><strong>不擅长实时计算</strong></p>
+<ul>
+<li>MapReduce 无法像 MySQL 一样,在毫秒或者秒级内返回结果。</li>
+</ul>
+</li>
+<li><p><strong>不擅长流式计算</strong></p>
+<ul>
+<li>流式计算的输入数据是动态的,而 MapReduce 的输入数据集是静态的,不能动态变化。这是因为 MapReduce 自身的设计特点决定了数据源必须是静态的。</li>
+</ul>
+</li>
+<li><p><strong>不擅长 DAG(有向无环图)计算</strong></p>
+<ul>
+<li>多个应用程序存在依赖关系,后一个应用程序的输入为前一个的输出。在这种情况下,MapReduce 并不是不能做,而是使用后,每个 MapReduce 作业的输出结果都会写入到磁盘,会造成大量的磁盘 IO,导致性能非常的低下。</li>
+</ul>
+</li>
+</ul>
+<h2 id="MapReduce-on-YARN-工作机制"><a href="#MapReduce-on-YARN-工作机制" class="headerlink" title="MapReduce on YARN 工作机制"></a>MapReduce on YARN 工作机制</h2><blockquote>
+<p>[MapReduce 在 YARN 详细的过程](#Yarn 工作机制)</p>
+</blockquote>
+<p>一个完整的 MapReduce 程序在分布式运行时有三类实例进程:</p>
+<ol>
+<li>MRAppMaster:负责整个程序的过程调度及状态协调。</li>
+<li>MapTask:负责 Map 阶段的整个数据处理流程。</li>
+<li>ReduceTask:负责 Reduce 阶段的整个数据处理流程。</li>
+</ol>
+<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/MR-on-YARN.png"></p>
+<h2 id="MapReduce-进程"><a href="#MapReduce-进程" class="headerlink" title="MapReduce 进程"></a>MapReduce 进程</h2><p>一个完整的 MapReduce 程序在分布式运行时有三类实例进程:</p>
+<ul>
+<li>MrAppMaster:负责整个程序的过程调度及状态协调。8</li>
+<li>MapTask:负责 Map 阶段的整个数据处理流程。</li>
+<li>ReduceTask:负责 Reduce 阶段的整个数据处理流程。</li>
+</ul>
+<h2 id="MR演示计算模型"><a href="#MR演示计算模型" class="headerlink" title="MR演示计算模型"></a>MR演示计算模型</h2><p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/MR%E6%BC%94%E7%A4%BA%E8%AE%A1%E7%AE%97%E6%A8%A1%E5%9E%8B.png" alt="MR演示计算模型.png"></p>
+<ol>
+<li>MapReduce运算程序一般需要分成2个阶段:Map阶段和Reduce阶段</li>
+<li>Map阶段的并发MapT ask,完全并行运行,互不相干</li>
+<li>第二个阶段的 ReduceTask 并发实例互不相干,但是他们的数据依赖于上一个阶段的所有 MapTask 并发实例的输出。</li>
+<li>MapReduce 编程模型只能包含一个 Map 阶段和一个 Reduce 阶段,如果用户的业务逻辑非常复杂,那就只能多个 MapReduce 程序,串行运行。</li>
+</ol>
+<h2 id="InputFormat-数据输入"><a href="#InputFormat-数据输入" class="headerlink" title="InputFormat 数据输入"></a>InputFormat 数据输入</h2><h3 id="切片与-MapTask-并行度决定机制"><a href="#切片与-MapTask-并行度决定机制" class="headerlink" title="切片与 MapTask 并行度决定机制"></a>切片与 MapTask 并行度决定机制</h3><ul>
+<li>MapTask 的并行度决定 Map 阶段的任务处理并发度,进而影响到整个 Job 的处理速度。</li>
+<li>数据块:Block 是 HDFS 物理上把数据分成一块一块。数据块是 HDFS 存储数据单位。</li>
+<li>数据切片:数据切片只是在逻辑上对输入进行分片，是一个分片长度和一个记录数据位置的数组,并不会在磁盘上将其切分成片进行存储。数据切片是 MapReduce 程序计算输入数据的单位,一切片会对应启动一个MapTask。</li>
+</ul>
+<h3 id="分片机制"><a href="#分片机制" class="headerlink" title="分片机制"></a>分片机制</h3><p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/%E5%88%86%E7%89%87.png" alt="分片.png"></p>
+<ul>
+<li>一个Job的Map阶段并行度由客户端在提交Job时的切片数决定</li>
+<li>每一个Split切片分配一个MapTask并行实例处理</li>
+<li>默认情况下,切片大小&#x3D;BlockSize</li>
+<li>切片时不考虑数据集整体,而是逐个针对每一个文件单独切片</li>
+</ul>
+<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/%E6%AF%8F%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E5%8D%95%E7%8B%AC%E5%88%87%E7%89%87.png" alt="每一个文件单独切片"></p>
+<h2 id="Map——-gt-Shuffle"><a href="#Map——-gt-Shuffle" class="headerlink" title="Map——&gt;Shuffle"></a>Map——&gt;Shuffle</h2><p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/map-suffle.png" alt="map-suffle"></p>
+<p>1.规划阶段<br>客户端submit()前，根据配置信息形成一个任务分配规划，即切片规划；submit()提交首先验证输入输出路径，提交切片信息、jar包(集群模式会提交，本地模式不会提交)、配置文件等；根据切片数计算需要起MapTask的个数</p>
+<p>2.Read 阶段<br>MapTask通过RecordReader逻辑从输入的InputSplit中解析出一个个key-value，自定义InputFormat将在这里调用</p>
+<p>3.Map 阶段<br>将解析出的key-value交给自定义的map()函数，并产生一系列新的key-value</p>
+<p>4.Collect 阶段<br>context.write()后内部会调用OutPutCollectior.collect()输出，并调用分区函数（默认HashPartitioner）对key进行分区后写入一个环形内存缓冲区中</p>
+<h2 id="Shuffle"><a href="#Shuffle" class="headerlink" title="Shuffle"></a>Shuffle</h2><p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/image-20221026175208824.png" alt="image-20221026175208824"></p>
+<p>​        map()之后reduce()之前的所有MapTask和ReduceTask工作流程称为shuffle</p>
+<p>​        map()的context.write()提交数据到collector（收集器），collector通过调用collect()对数据进行操作包括调用Partitioner的分区方法（默认HashPartitioner可自定义）根据k对kv进行分区后写入环形缓冲区（抽象概念本质是一个字节数据）当写入的数据达到环形缓冲区大小的80%触发溢写线程，线程启动后先对这80%的内存先按照分区数排序每个分区内单独按照key进行排序（快速排序），若检测到有Combiner则调用最终一次溢写生成一个临时文件，当map()方法结束MapTask对所有的溢写临时文件再次进行归并排序，若检测到Combiner则调用最终一个MapTask输出一个文件等待ReduceTask拉取。</p>
+<p>​        当所有的MapTask结束后启动ReduceTask，ReduceTask根据自己的编号去对应的分区拉取数据到内存，若数据过多也会触发溢写操作，将数据写到磁盘，在拉取数据的过程中ReduceTask同时启动两个后台线程对内存数据和磁盘文件进行合并，最终对所有文件进行归并排序，若监测到Combiner则调用，最终根据key的不同将数据发送给reduce()</p>
+<h2 id="Shuffle——-gt-Reduce"><a href="#Shuffle——-gt-Reduce" class="headerlink" title="Shuffle——&gt;Reduce"></a>Shuffle——&gt;Reduce</h2><p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/suffle-reduce.png" alt="suffle-reduce"></p>
+<p>1.Copy 阶段<br>简单地拉取数据ReduceTask根据自己的编号去对应的分区拉取数据到内存，如果数据过大超过内存数也会触发溢写操作，将数据写到磁盘中</p>
+<p>2.Merge 阶段<br>和Copy阶段同时进行，ReduceTask会启动连个线程对内存和磁盘数据进行合并，方式内存使用过多和磁盘磁盘文件太多</p>
+<p>3.Sort 阶段<br>把分散的数据文件再次合并成一个大文件，再进行一次归并排序</p>
+<p>4.Reduce 阶段<br>reduce()将计算结果写到HDFS上</p>
+<h1 id="资料参考"><a href="#资料参考" class="headerlink" title="资料参考"></a>资料参考</h1><p><a href="https://hadoop.apache.org/">Hadoop官网</a></p>
+<p><a href="https://weread.qq.com/web/bookDetail/fbf3275072037f1afbfd830">Hadoop集群程序设计与开发（王宏志、李春静）</a></p>
+<p><a href="https://blog.csdn.net/skylibiao/article/details/85713246">yarn工作原理</a></p>
+<p><a href="https://www.jianshu.com/p/25788c6caf49">YARN Capacity Scheduler（容量调度器）</a></p>
+<p><a href="https://blog.csdn.net/u012369535/article/details/87916298#t1">MapReduce工作原理详解（学习笔记）</a></p>
+<p><a href="https://blog.csdn.net/yumi6666/article/details/82526276">MapReduce中FileInputFormat的文件切片机制</a></p>
+<p><a href="https://kpretty.tech/archives/hadoop#12-hadoop-%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F">Hadoop 核心原理</a></p>
+<p><a href="https://cloud.tencent.com/developer/article/2021745">RPC框架</a></p>
+<p><a href="https://www.cnblogs.com/edisonchou/p/4285817.html">Hadoop RPC机制的使用 </a></p>
+<p><a href="https://www.bilibili.com/video/BV1Qp4y1n7EN/?spm_id_from=333.337.search-card.all.click&vd_source=5b52366bc13268f3533facca1424684b">Hadoop尚硅谷</a></p>
+]]></content>
+      <categories>
+        <category>大数据</category>
+        <category>Hadoop</category>
+      </categories>
+      <tags>
+        <tag>基础知识</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux常用命令</title>
     <url>/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<p>    本文撰写的目的是为了使刚接触Linux的小白更好的操作使用Linux，以及作为个人的备忘录。文章介绍的命令是本在Linux系统日常使用中常用到的，或者是在服务器上开发所用到的高频率命令。</p>
@@ -995,8 +1486,8 @@
         <category>IT知识</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>基础知识</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -1026,8 +1517,8 @@
         <category>IT知识</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>基础知识</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -1254,6 +1745,36 @@
       <tags>
         <tag>基础知识</tag>
         <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vim删除每行前后n个字符</title>
+    <url>/vim%E5%88%A0%E9%99%A4%E6%AF%8F%E8%A1%8C%E5%89%8D%E5%90%8En%E4%B8%AA%E5%AD%97%E7%AC%A6/</url>
+    <content><![CDATA[<p>​		使用vim删除（替换）指定行的行前或者行后的n个字符。</p>
+<span id="more"></span>
+
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><h3 id="删除每行前10个字符"><a href="#删除每行前10个字符" class="headerlink" title="删除每行前10个字符"></a>删除每行前10个字符</h3><figure class="highlight v"><table><tr><td class="code"><pre><span class="line">:%s/^.\&#123;<span class="number">10\&#125;</span><span class="comment">//</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="删除每行后10个字符"><a href="#删除每行后10个字符" class="headerlink" title="删除每行后10个字符"></a>删除每行后10个字符</h3><figure class="highlight v"><table><tr><td class="code"><pre><span class="line">:%s/.\&#123;<span class="number">10\&#125;</span>$<span class="comment">//</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h2><p>%表示所有行，s表示替换，<code>%</code>可用<code>1,$</code>代替。</p>
+<p>正则表达式<code>/^.\&#123;10\&#125;//</code>中，^表示行首，<code>.</code>表示要删除的字符个数，<code>.\&#123;10\&#125;</code>表示10个字符，可用10个<code>.</code>表示</p>
+<p>正则表达式<code>/^.\&#123;10\&#125;//</code>整体意思为从行开头，到第10个字符。</p>
+<p>正则表达式<code>/.\&#123;10\&#125;$//</code>中，$表示行首，</p>
+<p>正则表达式<code>/.\&#123;10\&#125;$//</code>整体意思为从尾部开始开头，到第10个字符</p>
+<h2 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h2><p>这个删除命令用到的是vim的字符串替换命令，将指定字符替换成<code>空</code>。</p>
+<p>vim编辑器替换命令：</p>
+<figure class="highlight v"><table><tr><td class="code"><pre><span class="line">:%s/s1/s2/    用字符串s2替换每行的第一个字符串s1</span><br><span class="line">:%s/s1/s2/g   用字符串s2替换每行的所有字符串s1</span><br></pre></td></tr></table></figure>
+
+<p>s1和s2中的特殊字符需要使用转义符号<code>\</code>，进行转义。</p>
+]]></content>
+      <categories>
+        <category>IT知识</category>
+      </categories>
+      <tags>
+        <tag>技术知识</tag>
+        <tag>Linux</tag>
+        <tag>vim</tag>
       </tags>
   </entry>
   <entry>
@@ -1785,530 +2306,9 @@
         <category>剑指Offer</category>
       </categories>
       <tags>
+        <tag>更新中</tag>
         <tag>算法</tag>
         <tag>Java</tag>
-        <tag>更新中</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vim删除每行前后n个字符</title>
-    <url>/vim%E5%88%A0%E9%99%A4%E6%AF%8F%E8%A1%8C%E5%89%8D%E5%90%8En%E4%B8%AA%E5%AD%97%E7%AC%A6/</url>
-    <content><![CDATA[<p>​		使用vim删除（替换）指定行的行前或者行后的n个字符。</p>
-<span id="more"></span>
-
-<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><h3 id="删除每行前10个字符"><a href="#删除每行前10个字符" class="headerlink" title="删除每行前10个字符"></a>删除每行前10个字符</h3><figure class="highlight v"><table><tr><td class="code"><pre><span class="line">:%s/^.\&#123;<span class="number">10\&#125;</span><span class="comment">//</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="删除每行后10个字符"><a href="#删除每行后10个字符" class="headerlink" title="删除每行后10个字符"></a>删除每行后10个字符</h3><figure class="highlight v"><table><tr><td class="code"><pre><span class="line">:%s/.\&#123;<span class="number">10\&#125;</span>$<span class="comment">//</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h2><p>%表示所有行，s表示替换，<code>%</code>可用<code>1,$</code>代替。</p>
-<p>正则表达式<code>/^.\&#123;10\&#125;//</code>中，^表示行首，<code>.</code>表示要删除的字符个数，<code>.\&#123;10\&#125;</code>表示10个字符，可用10个<code>.</code>表示</p>
-<p>正则表达式<code>/^.\&#123;10\&#125;//</code>整体意思为从行开头，到第10个字符。</p>
-<p>正则表达式<code>/.\&#123;10\&#125;$//</code>中，$表示行首，</p>
-<p>正则表达式<code>/.\&#123;10\&#125;$//</code>整体意思为从尾部开始开头，到第10个字符</p>
-<h2 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h2><p>这个删除命令用到的是vim的字符串替换命令，将指定字符替换成<code>空</code>。</p>
-<p>vim编辑器替换命令：</p>
-<figure class="highlight v"><table><tr><td class="code"><pre><span class="line">:%s/s1/s2/    用字符串s2替换每行的第一个字符串s1</span><br><span class="line">:%s/s1/s2/g   用字符串s2替换每行的所有字符串s1</span><br></pre></td></tr></table></figure>
-
-<p>s1和s2中的特殊字符需要使用转义符号<code>\</code>，进行转义。</p>
-]]></content>
-      <categories>
-        <category>IT知识</category>
-      </categories>
-      <tags>
-        <tag>技术知识</tag>
-        <tag>Linux</tag>
-        <tag>vim</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hadoop原理</title>
-    <url>/Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<p>本文主要介绍了Hadoop的基本构成（RPC、HDFS、Yarn、MapReduce）。使读者能够理解Hadoop的基本原理。</p>
-<span id="more"></span>
-
-<h1 id="Hadoop概述"><a href="#Hadoop概述" class="headerlink" title="Hadoop概述"></a>Hadoop概述</h1><h2 id="Hadoop是什么"><a href="#Hadoop是什么" class="headerlink" title="Hadoop是什么"></a>Hadoop是什么</h2><ol>
-<li>Hadoop是一个由A pache基金会所开发的分布式系统基础架构。</li>
-<li>主要解决,海量数据的存储和海量数据的分析计算问题。</li>
-<li>广义上来说,Hadoop通常是指一个更广泛的概念——Hadoop生态圈。</li>
-</ol>
-<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/image-20221012210211271.png" alt="image-20221012210211271"></p>
-<h2 id="Hadoop-三大发行版本-了解"><a href="#Hadoop-三大发行版本-了解" class="headerlink" title="Hadoop 三大发行版本(了解)"></a>Hadoop 三大发行版本(了解)</h2><h3 id="版本介绍"><a href="#版本介绍" class="headerlink" title="版本介绍"></a>版本介绍</h3><p>Hadoop 三大发行版本:Apache、Cloudera、Hortonworks。</p>
-<ul>
-<li>Apache 版本最原始(最基础)的版本,对于入门学习最好。2006</li>
-<li>Cloudera 内部集成了很多大数据框架,对应产品 CDH。2008</li>
-<li>Hortonworks 文档较好,对应产品 HDP。2011</li>
-<li>Hortonworks 现在已经被 Cloudera 公司收购,推出新的品牌 CDP。</li>
-</ul>
-<h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h3><h4 id="Apache-Hadoop"><a href="#Apache-Hadoop" class="headerlink" title="Apache Hadoop"></a>Apache Hadoop</h4><p>官网地址：<a href="http://hadoop.apache.org/releases.html">http://hadoop.apache.org/releases.html</a><br>下载地址：<a href="https://archive.apache.org/dist/hadoop/common/">https://archive.apache.org/dist/hadoop/common/</a></p>
-<h4 id="Cloudera-Hadoop"><a href="#Cloudera-Hadoop" class="headerlink" title="Cloudera Hadoop"></a>Cloudera Hadoop</h4><p>官网地址：<a href="https://www.cloudera.com/downloads/cdh/5-10-0.html">https://www.cloudera.com/downloads/cdh/5-10-0.html</a><br>下载地址：<a href="http://archive-primary.cloudera.com/cdh5/cdh/5/">http://archive-primary.cloudera.com/cdh5/cdh/5/</a></p>
-<h4 id="Hortonworks-Hadoop"><a href="#Hortonworks-Hadoop" class="headerlink" title="Hortonworks Hadoop"></a>Hortonworks Hadoop</h4><p>官网地址：<a href="https://hortonworks.com/products/data-center/hdp/">https://hortonworks.com/products/data-center/hdp/</a><br>下载地址：<a href="https://hortonworks.com/downloads/#data-platform">https://hortonworks.com/downloads/#data-platform</a></p>
-<h2 id="Hadoop-优势-4-高"><a href="#Hadoop-优势-4-高" class="headerlink" title="Hadoop 优势(4 高)"></a>Hadoop 优势(4 高)</h2><ul>
-<li>高可靠性:Hadoop底层维护多个数据副本,所以即使Hadoop某个计算元素或存储出现故障,也不会导致数据的丢失。</li>
-</ul>
-<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/image-20221012194757354.png" alt="image-20221012194757354"></p>
-<ul>
-<li>高扩展性:在集群间分配任务数据,可方便的扩展数以千计的节点。</li>
-</ul>
-<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/image-20221012194910090.png" alt="image-20221012194910090"></p>
-<ul>
-<li>高效性:在MapReduce的思想下,Hadoop是并行工作的,以加快任务处理速度。</li>
-</ul>
-<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/image-20221012195023866.png" alt="image-20221012195023866"></p>
-<ul>
-<li>高容错性:能够自动将失败的任务重新分配。</li>
-</ul>
-<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/2022-10-12_19-50.png" alt="2022-10-12_19-50.png"></p>
-<h2 id="Hadoop-组成-面试重点"><a href="#Hadoop-组成-面试重点" class="headerlink" title="Hadoop 组成(面试重点)"></a>Hadoop 组成(面试重点)</h2><h3 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h3><p>Hadoop主要有4大模块：HDFS、Yarn、MapReduce、Common</p>
-<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/image-20221012195923918.png" alt="image-20221012195923918"></p>
-<h3 id="Common架构概述"><a href="#Common架构概述" class="headerlink" title="Common架构概述"></a>Common架构概述</h3><p>Common(公共)模块更多地隐藏在幕后，为框架提供基础支持。从Hadoop 0.20版本开始，将原来Hadoop项目的Core部分更名为Hadoop Common</p>
-<p>Common：为Hadoop其他模块提供支持实用程序，是整体Hadoop项目的核心。其主要包括一组分布式文件系统、通用I&#x2F;O组件与接口(序列化远程过程调用RPC、持久化数据结构)</p>
-<h3 id="HDFS-架构概述"><a href="#HDFS-架构概述" class="headerlink" title="HDFS 架构概述"></a>HDFS 架构概述</h3><p>Hadoop Distributed File System,简称 HDFS,是一个分布式文件系统。</p>
-<p>HDFS下分3大组件：NameNode(nn)、DataNode(dn)、Secondary NameNode(2nn)</p>
-<ol>
-<li>NameNode：存储文件的元数据,如文件名,文件目录结构,文件属性(生成时间、副本数、文件权限),以及每个文件的块列表和块所在的DataNode等。</li>
-<li>DataNode：在本地文件系统存储文件块数据,以及块数据的校验和。</li>
-<li>Secondary NameNode：在本地文件系统存储文件块数据,以及块数据的校验和。Secondary NameNode并不会存储所有的数据，NameNode损坏只能恢复部分数据。</li>
-</ol>
-<h3 id="YARN-架构概述"><a href="#YARN-架构概述" class="headerlink" title="YARN 架构概述"></a>YARN 架构概述</h3><p>Yet Another Resource Negotiator 简称 YARN ,另一种资源协调者,是 Hadoop 的资源管理器。</p>
-<p>YARN下分4大组件：ResourceManager(RM)、NodeManager(NM)、ApplicationMaster(AM)、Container</p>
-<ol>
-<li>ResourceManager(RM)：整个集群资源(内存、CPU等)的老大</li>
-<li>NodeManager(NM)：整个集群资源(内存、CPU等)的老大</li>
-<li>ApplicationMaster(AM)：单个任务运行的老大</li>
-<li>Container：容器,相当一台独立的服务器,里面封装了任务运行所需要的资源,如内存、CPU、磁盘、网络等。</li>
-</ol>
-<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/2022-10-12_20-27.png" alt="2022-10-12_20-27.png"></p>
-<h3 id="MapReduce-架构概述"><a href="#MapReduce-架构概述" class="headerlink" title="MapReduce 架构概述"></a>MapReduce 架构概述</h3><p>MapReduce 将计算过程分为两个阶段:Map 和 Reduce</p>
-<ol>
-<li>Map 阶段并行处理输入数据</li>
-<li>Reduce 阶段对 Map 结果进行汇总</li>
-</ol>
-<p>MapReduce是一个软件框架，基于该框架能够容易地编写应用程序，这些应用程序能够运行在由上千个商用机器组成的大集群上，并以一种可靠的，具有容错能力的方式并行地处理上TB级别的海量数据集。</p>
-<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/2022-10-12_20-35.png" alt="2022-10-12_20-35.png"></p>
-<h3 id="HDFS、YARN、MapReduce-三者关系"><a href="#HDFS、YARN、MapReduce-三者关系" class="headerlink" title="HDFS、YARN、MapReduce 三者关系"></a>HDFS、YARN、MapReduce 三者关系</h3><p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/image-20221012204712903.png" alt="image-20221012204712903"></p>
-<h2 id="Hadoop-目录结构"><a href="#Hadoop-目录结构" class="headerlink" title="Hadoop 目录结构"></a>Hadoop 目录结构</h2><h3 id="查看-Hadoop-目录结构"><a href="#查看-Hadoop-目录结构" class="headerlink" title="查看 Hadoop 目录结构"></a>查看 Hadoop 目录结构</h3><p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/image-20221012205649812.png" alt="image-20221012205649812"></p>
-<h3 id="重要目录"><a href="#重要目录" class="headerlink" title="重要目录"></a>重要目录</h3><ol>
-<li>bin 目录:存放对 Hadoop 相关服务(hdfs,yarn,mapred)进行操作的脚本</li>
-<li>etc 目录:Hadoop 的配置文件目录,存放 Hadoop 的配置文件</li>
-<li>lib 目录:存放 Hadoop 的本地库(对数据进行压缩解压缩功能)</li>
-<li>sbin 目录:存放启动或停止 Hadoop 相关服务的脚本</li>
-<li>share 目录:存放 Hadoop 的依赖 jar 包、文档、和官方案例</li>
-</ol>
-<h2 id="Hadoop-运行模式"><a href="#Hadoop-运行模式" class="headerlink" title="Hadoop 运行模式"></a>Hadoop 运行模式</h2><p>Hadoop 运行模式包括:本地模式、伪分布式模式、完全分布式模式。</p>
-<ol>
-<li>本地模式：单机运行,只是用来演示一下官方案例。生产环境不用。</li>
-<li>伪分布式模式：也是单机运行,但是具备 Hadoop 集群的所有功能,一台服务器模拟一个分布式的环境。个别缺钱的公司用来测试,生产环境不用。</li>
-<li>完全分布式模式：多台服务器组成分布式环境。生产环境使用。</li>
-</ol>
-<h1 id="RPC"><a href="#RPC" class="headerlink" title="RPC"></a>RPC</h1><p>​        RPC（Remote Procedure Call）远程过程调用协议，一种通过网络从远程计算机上请求服务，而不需要了解底层网络技术的协议。其过程就是业务处理、计算任务，更直白的说，就是程序，就是想调用本地方法一样调用远程的过程</p>
-<p>​        Hadoop 的 RPC 是 Hadoop 的核心通信机制，RPC 主要用于所有 Hadoop 的组件元数据交换，如 MapReduce、Hadoop 分布式系统（HDFS）和Hadoop 的数据库（Hbase）。</p>
-<h2 id="RPC的特点"><a href="#RPC的特点" class="headerlink" title="RPC的特点"></a>RPC的特点</h2><ol>
-<li>透明性：远程调用其他机器上的程序，对用户来说就像是调用本地方法一样；</li>
-<li>高性能：RPC Server能够并发处理多个来自Client的请求；</li>
-<li>可控性：jdk中已经提供了一个RPC框架—RMI，但是该PRC框架过于重量级并且可控之处比较少，所以Hadoop RPC实现了自定义的PRC框架。</li>
-</ol>
-<h2 id="PRC工作原理"><a href="#PRC工作原理" class="headerlink" title="PRC工作原理"></a>PRC工作原理</h2><p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/Hadoop-RPC%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86.png"></p>
-<ol>
-<li>服务消费方（client）调用以本地调用方式调用服务；</li>
-<li>client stub接收到调用后负责将方法、参数等组装成能够进行网络传输的消息体；</li>
-<li>client stub找到服务地址，通过RPCRuntime实例将消息发送到服务端；</li>
-<li>RPCRuntime实例收到请求后交给server stub进行解码；</li>
-<li>server stub根据解码结果调用本地的服务；</li>
-<li>本地服务执行并将结果返回给server stub；</li>
-<li>server stub将返回结果打包成消息并发送至消费方；</li>
-<li>client stub接收到消息，并进行解码；</li>
-<li>服务消费方得到最终结果。</li>
-</ol>
-<h2 id="Hadoop中的RPC机制"><a href="#Hadoop中的RPC机制" class="headerlink" title="Hadoop中的RPC机制"></a>Hadoop中的RPC机制</h2><p>​        同其他RPC框架一样，Hadoop RPC分为四个部分：</p>
-<ol>
-<li>序列化层：Clent与Server端通信传递的信息采用了Hadoop里提供的序列化类或自定义的Writable类型；</li>
-<li>函数调用层：Hadoop RPC通过动态代理以及java反射实现函数调用；</li>
-<li>网络传输层：Hadoop RPC采用了基于TCP&#x2F;IP的socket机制；</li>
-<li>服务器端框架层：RPC Server利用java NIO以及采用了事件驱动的I&#x2F;O模型，提高RPC Server的并发处理能力；</li>
-</ol>
-<p>　　<strong>Hadoop RPC在整个Hadoop中应用非常广泛</strong>，Client、DataNode、NameNode之间的通讯全靠它了。例如：我们平时操作HDFS的时候，使用的是FileSystem类，它的内部有个DFSClient对象，这个对象负责与NameNode打交道。在运行时，DFSClient在本地创建一个NameNode的代理，然后就操作这个代理，这个代理就会通过网络，远程调用到NameNode的方法，也能返回值。</p>
-<h2 id="Hadoop-RPC设计技术"><a href="#Hadoop-RPC设计技术" class="headerlink" title="Hadoop RPC设计技术"></a>Hadoop RPC设计技术</h2><ul>
-<li><p><strong>动态代理</strong></p>
-<p>  动态代理可以提供对另一个对象的访问，同时隐藏实际对象的具体事实，因为代理对象对客户隐藏了实际对象。</p>
-</li>
-<li><p><strong>反射—动态加载类</strong></p>
-<p>  反射机制实在运动状态中，对任意一个类，都能够知道这个类所有属性和方法；对于任意一个对象，都能够调用他的任意一个方法和属性。</p>
-</li>
-<li><p><strong>序列化</strong></p>
-<p>  什么是序列化？序列化就是将数据结构或对象转换成二进制串的过程，也就是编码的过程。</p>
-<p>  什么是反序列化？将在序列化过程中所生成的二进制串转换成数据结构或者对象的过程。</p>
-<p>  为什么需要序列化？转换为二进制串后才好进行网络传输嘛！</p>
-<p>  为什么需要反序列化？将二进制转换为对象才好进行后续处理！</p>
-</li>
-<li><p><strong>非阻塞的异步IO</strong>（NIO）</p>
-<p>  非阻塞的异步IO指的是用户调用读写方法是不阻塞的，立刻返回，而且用户不需要关注读写，只需要提供回调操作。内核线程在完成读写后回调用户提供的callback</p>
-</li>
-</ul>
-<h1 id="HDFS"><a href="#HDFS" class="headerlink" title="HDFS"></a>HDFS</h1><p>​        HDFS(Hadoop Distributed File System),它是一个文件系统,用于存储文件,通过目录树来定位文件;其次,它是分布式的,由很多服务器联合起来实现其功能,集群中的服务器有各自的角色。</p>
-<p>​        HDFS 的使用场景:适合一次写入,多次读出的场景。一个文件经过创建、写入和关闭之后就不需要改变。</p>
-<p>​        HDFS采用master&#x2F;slave架构。一个HDFS集群由一个NameNode和一定数目的DataNode组成。</p>
-<h2 id="HDFS-优缺点"><a href="#HDFS-优缺点" class="headerlink" title="HDFS 优缺点"></a>HDFS 优缺点</h2><h3 id="HDFS优点"><a href="#HDFS优点" class="headerlink" title="HDFS优点"></a>HDFS优点</h3><ol>
-<li><p>高容错性</p>
-<ul>
-<li><p>数据自动保存多个副本。它通过增加副本的形式,提高容错性。</p>
-<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/image-20221016211621397.png" alt="image-20221016211621397"></p>
-</li>
-<li><p>某一个副本丢失以后,它可以自动恢复。</p>
-<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/image-20221016211651087.png" alt="image-20221016211651087"></p>
-</li>
-</ul>
-</li>
-<li><p>适合处理大数据</p>
-<ul>
-<li>数据规模:能够处理数据规模达到GB、T B、甚至PB级别的数据;</li>
-<li>文件规模:能够处理百万规模以上的文件数量,数量相当之大。</li>
-</ul>
-</li>
-<li><p>可构建在廉价机器上,通过多副本机制,提高可靠性。</p>
-</li>
-</ol>
-<h3 id="HDFS缺点"><a href="#HDFS缺点" class="headerlink" title="HDFS缺点"></a>HDFS缺点</h3><ol>
-<li><p>不适合低延时数据访问,比如毫秒级的存储数据,是做不到的。</p>
-</li>
-<li><p>无法高效的对大量小文件进行存储。</p>
-<ul>
-<li>存储大量小文件的话,它会占用NameNode大量的内存来存储文件目录和块信息。这样是不可取的,因为NameNode的内存总是有限的。</li>
-<li>小文件存储的寻址时间会超过读取时间,它违反了HDFS的设计目标。</li>
-</ul>
-</li>
-<li><p>不支持并发写入、文件随机修改。</p>
-<ul>
-<li><p>仅支持数据append(追加),不支持文件的随机修改。</p>
-</li>
-<li><p>一个文件只能有一个写,不允许多个线程同时写。</p>
-<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/image-20221016212701958.png" alt="image-20221016212701958"></p>
-</li>
-</ul>
-</li>
-</ol>
-<h2 id="HDFS-组成架构"><a href="#HDFS-组成架构" class="headerlink" title="HDFS 组成架构"></a>HDFS 组成架构</h2><p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/image-20221016213946647.png" alt="image-20221016213946647"></p>
-<ol>
-<li>NameNode(nn):就是Master,它是一个主管、管理者。<ol>
-<li>管理HDFS的命名空间;</li>
-<li>配置副本策略;</li>
-<li>管理数据块(Block)映射信息;</li>
-<li>处理客户端读写请求;</li>
-</ol>
-</li>
-<li>DataNode:就是Slave。NameNode下达命令,DataNode执行实际的操作。<ol>
-<li>存储实际的数据块;</li>
-<li>执行数据块的读&#x2F;写操作;</li>
-</ol>
-</li>
-<li>Client:就是客户端。<ol>
-<li>文件切分。文件上传HDF S的时候,Client将文件切分成一个一个的Block,然后进行上传;</li>
-<li>与NameNode交互,获取文件的位置信息;</li>
-<li>与DataNode交互,读取或者写入数据;</li>
-<li>Client提供一些命令来管理HDFS,比如NameNode格式化;</li>
-<li>Client可以通过一些命令来访问HDFS,比如对HDFS增删查改操作;</li>
-</ol>
-</li>
-<li>Block：文件系统读写的最小单元。<ol>
-<li>可根据实际的工作效率和集群吞吐量修改Block大小;</li>
-<li>切分时按大小进行切分，不足值单独成块;</li>
-</ol>
-</li>
-<li>Secondary NameNode:并非NameNode的热备。当NameNode挂掉的时候,它并不能马上替换NameNode并提供服务。<ol>
-<li>辅助NameNode,分担其工作量,比如定期合并Fsimage和Edits,并推送给NameNode ;</li>
-<li>在紧急情况下,可辅助恢复NameNode。</li>
-</ol>
-</li>
-</ol>
-<h2 id="HDFS-文件块大小-面试重点"><a href="#HDFS-文件块大小-面试重点" class="headerlink" title="HDFS 文件块大小(面试重点)"></a>HDFS 文件块大小(面试重点)</h2><ol>
-<li>HDFS的块设置太小,会增加寻址时间,程序一直在找块的开始位置;</li>
-<li>如果块设置的太大,从磁盘传输数据的时间会明显大于定位这个块开始位置所需的时间。导致程序在处理这块数据时,会非常慢。</li>
-<li>HDFS块的大小设置主要取决于磁盘传输速率。</li>
-<li>HDFS中 的 文 件 在 物 理 上 是 分 块 存 储 ( Block ) , 块 的 大 小 可 以 通 过 配 置 参 数( dfs.blocksize)来规定,默认大小在Hadoop2.x&#x2F;3.x版本中是128M,1.x版本中是64M。</li>
-<li>Block计算公式：<ol>
-<li>如果寻址时间约为10ms,即查找到目标block的时间为10ms。</li>
-<li>寻址时间为传输时间的1%时,则为最佳状态(专家)。因此,传输时间&#x3D;10ms&#x2F;0.01&#x3D;1000ms&#x3D;1s</li>
-<li>而目前磁盘的传输速率普遍为100MB&#x2F;s。要实际情况而定</li>
-<li>block大小&#x3D;1s*100MB&#x2F;s&#x3D;100MB</li>
-</ol>
-</li>
-</ol>
-<h2 id="HDFS的副本复制"><a href="#HDFS的副本复制" class="headerlink" title="HDFS的副本复制"></a>HDFS的副本复制</h2><p>​        HDFS被设计成能够在一个大集群中跨机器可靠地存储超大文件。它将每个文件存储成一系列的数据块，除了最后一个，所有的数据块都是同样大小的。为了容错，文件的所有数据块都会有副本。每个文件的数据块大小和副本系数都是可配置的。应用程序可以指定某个文件的副本数目。副本系数可以在文件创建的时候指定，也可以在之后改变。HDFS中的文件都是一次性写入的，并且严格要求在任何时候只能有一个写入者。</p>
-<p>​        Namenode全权管理数据块的复制，它周期性地从集群中的每个Datanode接收心跳信号和块状态报告(Blockreport)。接收到心跳信号意味着该Datanode节点工作正常。块状态报告包含了一个该Datanode上所有数据块的列表。</p>
-<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/image-20221017152744622.png" alt="image-20221017152744622"></p>
-<p>副本节点选择:</p>
-<ol>
-<li>第一个副本在Client所处的节点上。如果客户端在集群外,随机选一个。</li>
-<li>第二个副本在另一个机架的随机一个节点</li>
-<li>第三个副本在第二个副本所在机架的随机节点</li>
-</ol>
-<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/image-20221017153441640.png" alt="image-20221017153441640"></p>
-<h2 id="HDFS-的读写流程-面试重点"><a href="#HDFS-的读写流程-面试重点" class="headerlink" title="HDFS 的读写流程(面试重点)"></a>HDFS 的读写流程(面试重点)</h2><h3 id="HDFS-读数据流程"><a href="#HDFS-读数据流程" class="headerlink" title="HDFS 读数据流程"></a>HDFS 读数据流程</h3><p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/hdsf-read.png" alt="hdsf-read"></p>
-<ol>
-<li>首先调用FileSystem对象的open方法，其实是一个DistributedFileSystem类的实例。</li>
-<li>客户端通过 DistributedFileSystem 向 NameNode 请求下载文件, NameNode通过查询元数据,找到文件块所在的 DataNode 地址，并按照Hadoop结构拓扑排序，距离客户端近的排在前面。</li>
-<li>前两步会返回一个FSDataInputStream对象，该对象会被封装成DFSInputStream对象以方便管理DataNode和NameNode数据流。客户端调用read方法DFSInputStream找到最近的第一个数据所在的DataNode连接。</li>
-<li>客户端以 Packet 为单位接收,先在本地缓存,然后写入目标文件。</li>
-<li>如果第一块读完了系统会关闭（close）指向第一块的DataNode连接，接着读取第二块。</li>
-</ol>
-<h3 id="HDFS-写数据流程"><a href="#HDFS-写数据流程" class="headerlink" title="HDFS 写数据流程"></a>HDFS 写数据流程</h3><p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/hdfs-write.png" alt="hdfs-write.png"></p>
-<ol>
-<li>客 户 端 通 过 Distributed FileSystem 模 块 向 NameNode 请 求 上 传 文 件 ,NameNode 检查目标文件是否已存在,父目录是否存在。</li>
-<li>NameNode 返回是否可以上传。</li>
-<li>客户端请求第一个 Block 上传到哪几个 DataNode 服务器上。</li>
-<li>NameNode 返回 3 个 DataNode 节点，分别为 dn1、dn2、dn3。。</li>
-<li>客户端通过 FSDataOutputStream 模块请求 dn1 上传数据, dn1 收到请求会继续调用 dn2,然后 dn2 调用 dn3,将这个通信管道建立完成。<br>NameNode会返回一个Ack到前一个NameNode逐级应答客户端。</li>
-<li>客户端开始往 dn1 上传第一个 Block (先从磁盘读取数据放到一个本地内存缓存),以 Packet 为单位,dn1 收到一个 Packet 就会传给 dn2,dn2 传给 dn3;dn1 每传一个packet 会放入一个应答队列等待应答。</li>
-<li>当一个 Block 传输完成之后,客户端再次请求 NameNode 上传第二个 Block 的服务器。(重复执行 5-12 步)。</li>
-</ol>
-<h2 id="HDFS数据删除与恢复"><a href="#HDFS数据删除与恢复" class="headerlink" title="HDFS数据删除与恢复"></a>HDFS数据删除与恢复</h2><p>​        HDFS的数据删除与传统的数据删除有很大的区别。在传统文件系统中要删除文件，首先要找到文件位置，然后把文件删除。而在HDFS中，由于文件是一个大文件被切割成若干个小文件Block，Block以多副本的形式存储在不同的DataNode中，文件位置的存储位置的映射在NameNode中，如果要找到位置多线程一次删除会给NameNode很大的压力，且删除时间长。所以HDFS把删除任务拆解为不同的线程。<br>​        当HDFS的数据被删除时，不会立即从HDFS中删除。而是将文件移动到&#x2F;trash中。只要文件还在&#x2F;trash目录中就可以快速恢复。文件的保存时间是有限的，只要超过时间线文件就会被删除。当前默认的时间为0秒，即删除的文件不存储在&#x2F;trash中，该值可以在core-site.xml中配置参数fs.trash.interval进行设定。</p>
-<h1 id="YARN"><a href="#YARN" class="headerlink" title="YARN"></a>YARN</h1><p>​        YARN 是一个资源调度平台,负责为运算程序提供服务器运算资源,相当于一个分布式的操作系统平台,而 MapReduce 等运算程序则相当于运行于操作系统之上的应用程序。</p>
-<h2 id="Yarn-基础架构"><a href="#Yarn-基础架构" class="headerlink" title="Yarn 基础架构"></a>Yarn 基础架构</h2><blockquote>
-<p> YARN 主 要 由 ：ResourceManager 、 NodeManager 、 ApplicationMaster 、Container 等组件构成。</p>
-</blockquote>
-<p>各组件的作用：</p>
-<ul>
-<li><p><strong>ResourceManager</strong></p>
-<ol>
-<li>处理客户端请求</li>
-<li>监控NodeManager</li>
-<li>启动或监控ApplicationMaster</li>
-<li>资源的分配与调度</li>
-</ol>
-</li>
-<li><p><strong>NodeManager</strong></p>
-<ol>
-<li>管理单个节点上的资源</li>
-<li>处理来自ResourceManager的命令</li>
-<li>处理来自ApplicationMaster的命令</li>
-</ol>
-</li>
-<li><p><strong>ApplicationMaster</strong></p>
-<ol>
-<li>为应用程序申请资源并分配给内部的任务</li>
-<li>任务的监控与容错</li>
-</ol>
-</li>
-<li><p><strong>Container</strong></p>
-<ol>
-<li>Container 是 YARN 中的资源抽象,它封装了某个节点上的多维度资源,如内存、CPU、磁盘、网络等。</li>
-</ol>
-</li>
-</ul>
-<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/yarn-%E6%9E%B6%E6%9E%84.png" alt="yarn-架构.png"></p>
-<p>工作流程：</p>
-<ol>
-<li><p>Client向ResourceManager提交作业（可以是Spark&#x2F;Mapreduce作业）</p>
-</li>
-<li><p>ResourceManager会为这个作业分配一个container</p>
-</li>
-<li><p>ResourceManager与NodeManager通信，要求NodeManger在刚刚分配好的container上启动应用程序的Application Master</p>
-</li>
-<li><p>Application Master先去向ResourceManager注册，而后ResourceManager会为各个任务申请资源，并监控运行情况</p>
-</li>
-<li><p>Application Master采用轮询（polling）方式向ResourceManager申请并领取资源（通过RPC协议通信）</p>
-</li>
-<li><p>Application Manager申请到了资源以后，就和NodeManager通信，要求NodeManager启动任务</p>
-</li>
-<li><p>最后，NodeManger启动作业对应的任务。</p>
-</li>
-</ol>
-<h2 id="Yarn-工作机制"><a href="#Yarn-工作机制" class="headerlink" title="Yarn 工作机制"></a>Yarn 工作机制</h2><blockquote>
-<p>下图以MR程序任务提交为例。Container 是 YARN 中 的资源抽象</p>
-<p>在 Spark 中负责准备 Task 环境和执行的是 Executor</p>
-<p>在 Flink 中 TaskManager 是任务容器</p>
-</blockquote>
-<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/yarn-%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6.png" alt="yarn-工作机制"></p>
-<ol>
-<li>MR 程序提交到客户端所在的节点。</li>
-<li>YarnRunner 向 ResourceManager 申请一个 Application。</li>
-<li>RM 将该应用程序的资源路径返回给 YarnRunner。</li>
-<li>该程序将运行所需资源提交到 HDFS 上。</li>
-<li>程序资源提交完毕后，申请运行 mrAppMaster。</li>
-<li>RM 将用户的请求初始化成一个 Task。</li>
-<li>其中一个 NodeManager 领取到 Task 任务。</li>
-<li>该 NodeManager 创建容器 Container，并产生 MRAppmaster 。</li>
-<li>Container 从 HDFS 上拷贝资源到本地。</li>
-<li>MRAppmaster 向 RM 申请运行 MapTask 资源。</li>
-<li>RM 将运行 MapTask 任务分配给另外两个 NodeManager，另两个 NodeManager 分 别领取任务并创建容器。</li>
-<li>MR 向两个接收到任务的 NodeManager 发送程序启动脚本，这两个 NodeManager 分别启动 MapTask，MapTask 对数据分区排序。</li>
-<li>MrAppMaster 等待所有 MapTask 运行完毕后，向 RM 申请容器，运行 ReduceTask。</li>
-<li>ReduceTask 向 MapTask 获取相应分区的数据。</li>
-<li>程序运行完毕后，MR 会向 RM 申请注销自己。</li>
-</ol>
-<h2 id="Yarn-调度器和调度算法"><a href="#Yarn-调度器和调度算法" class="headerlink" title="Yarn 调度器和调度算法"></a>Yarn 调度器和调度算法</h2><h3 id="先进先出调度器-FIFO"><a href="#先进先出调度器-FIFO" class="headerlink" title="先进先出调度器(FIFO)"></a>先进先出调度器(FIFO)</h3><h4 id="先进先出调度器特点"><a href="#先进先出调度器特点" class="headerlink" title="先进先出调度器特点"></a>先进先出调度器特点</h4><p>FIFO 调度器(First In First Out):单队列,根据提交作业的先后顺序,先来先服务。</p>
-<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/image-20221022190341795.png" alt="image-20221022190341795"></p>
-<h4 id="先进先出调度器的优缺点"><a href="#先进先出调度器的优缺点" class="headerlink" title="先进先出调度器的优缺点"></a>先进先出调度器的优缺点</h4><p><strong>优点</strong>:简单易懂;<br><strong>缺点</strong>:不支持多队列,生产环境很少使用;</p>
-<h3 id="容量调度器-Capacity-Scheduler"><a href="#容量调度器-Capacity-Scheduler" class="headerlink" title="容量调度器(Capacity Scheduler)"></a>容量调度器(Capacity Scheduler)</h3><h4 id="容量调度器特点"><a href="#容量调度器特点" class="headerlink" title="容量调度器特点"></a>容量调度器特点</h4><p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/%E5%AE%B9%E9%87%8F%E8%B0%83%E5%BA%A6%E5%99%A8%E7%89%B9%E7%82%B9.png" alt="容量调度器特点"></p>
-<ol>
-<li><p><strong>多队列</strong>:每个队列可配置一定的资源量,每个队列采用FIFO调度策略。</p>
-</li>
-<li><p><strong>容量保证</strong>:管理员可为每个队列设置资源最低保证和资源使用上限。</p>
-</li>
-<li><p><strong>灵活性</strong>:如果一个队列中的资源有剩余,可以暂时共享给那些需要资源的队列,而一旦该队列有新的应用程序提交,则其他队列借调的资源会归还给该队列。</p>
-</li>
-<li><p><strong>多租户</strong>:</p>
-<ol>
-<li>支持多用户共享集群和多应用程序同时运行。</li>
-<li>为了防止同一个用户的作业独占队列中的资源,该调度器会对同一用户提交的作业所占资源量进行限定。</li>
-</ol>
-</li>
-<li><p><strong>安全保证</strong>：每个队列有严格的ACL列表规定它的访问用户，每个用户可指定哪些用户允许查看自己应用程序的运行状态或者控制应用程序（比如杀死应用程序）。此外，管理员可指定队列管理员和集群系统管理员</p>
-</li>
-<li><p><strong>动态更新配置文件</strong>：管理员可根据需要动态修改各种配置参数，以实现在线集群管理</p>
-</li>
-</ol>
-<h4 id="容量调度器资源分配算法"><a href="#容量调度器资源分配算法" class="headerlink" title="容量调度器资源分配算法"></a>容量调度器资源分配算法</h4><p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/%E5%AE%B9%E9%87%8F%E8%B0%83%E5%BA%A6%E5%99%A8%E8%B5%84%E6%BA%90%E5%88%86%E9%85%8D%E7%AE%97%E6%B3%95.png" alt="容量调度器资源分配算法"></p>
-<ol>
-<li><strong>队列资源分配</strong><ul>
-<li>从root开始,使用深度优先算法,优先选择资源占用率最低的队列分配资源。</li>
-</ul>
-</li>
-<li><strong>作业资源分配</strong><ul>
-<li>默认按照提交作业的优先级和提交时间顺序分配资源。</li>
-</ul>
-</li>
-<li><strong>容器资源分配</strong><ol>
-<li>按照容器的优先级分配资源;</li>
-<li>如果优先级相同,按照数据本地性原则:<ol>
-<li>任务和数据在同一节点</li>
-<li>任务和数据在同一机架</li>
-<li>任务和数据不在同一节点也不在同一机架</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-<h3 id="公平调度器-Fair-Scheduler"><a href="#公平调度器-Fair-Scheduler" class="headerlink" title="公平调度器(Fair Scheduler)"></a>公平调度器(Fair Scheduler)</h3><h4 id="公平调度器特点"><a href="#公平调度器特点" class="headerlink" title="公平调度器特点"></a>公平调度器特点</h4><p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/%E5%85%AC%E5%B9%B3%E8%B0%83%E5%BA%A6%E5%99%A8%E7%89%B9%E7%82%B9.png" alt="公平调度器特点"></p>
-<ol>
-<li><strong>与容量调度器相同点</strong><ul>
-<li>多队列:支持多队列多作业</li>
-<li>容量保证:管理员可为每个队列设置资源最低保证和资源使用上线</li>
-<li>灵活性:如果一个队列中的资源有剩余,可以暂时共享给那些需要资源的队列,而一旦该队列有新的应用程序提交,则其他队列借调的资源会归还给该队列。</li>
-<li>多租户:支持多用户共享集群和多应用程序同时运行;为了防止同一个用户的作业独占队列中的资源,该调度器会对同一用户提交的作业所占资源量进行限定。</li>
-</ul>
-</li>
-<li><strong>与容量调度器不同点</strong><ul>
-<li>核心调度策略不同<ul>
-<li>容量调度器:优先选择资源利用率低的队列</li>
-<li>公平调度器:优先选择对资源的缺额比例大的</li>
-</ul>
-</li>
-<li>每个队列可以单独设置资源分配方式<ul>
-<li>容量调度器:FIFO 、 DRF</li>
-<li>公平调度器:FIFO 、FAIR、DRF</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h4 id="公平调度器-缺额"><a href="#公平调度器-缺额" class="headerlink" title="公平调度器-缺额"></a>公平调度器-缺额</h4><p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/%E5%85%AC%E5%B9%B3%E8%B0%83%E5%BA%A6%E5%99%A8-%E7%BC%BA%E9%A2%9D.png" alt="公平调度器-缺额"></p>
-<ol>
-<li>公平调度器设计目标是:在时间尺度上,所有作业获得公平的资源。某一时刻一个作业应获资源和实际获取资源的差距叫“ 缺额”</li>
-<li>调度器会优先为缺额大的作业分配资源</li>
-</ol>
-<h1 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h1><p>​    MapReduce 是一个分布式运算程序的编程框架,是用户开发“基于 Hadoop 的数据分析应用”的核心框架。<br>​    MapReduce 核心功能是将用户编写的业务逻辑代码和自带默认组件整合成一个完整的分布式运算程序,并发运行在一个 Hadoop 集群上。</p>
-<h2 id="MapReduce-优缺点"><a href="#MapReduce-优缺点" class="headerlink" title="MapReduce 优缺点"></a>MapReduce 优缺点</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
-<li><strong>MapReduce 易于编程</strong>：<ul>
-<li>它简单的实现一些接口,就可以完成一个分布式程序,这个分布式程序可以分布到大量廉价的 PC 机器上运行。也就是说你写一个分布式程序,跟写一个简单的串行程序是一模一样的。就是因为这个特点使得 MapReduce 编程变得非常流行。</li>
-</ul>
-</li>
-<li><strong>良好的扩展性</strong>：<ul>
-<li>当你的计算资源不能得到满足的时候,你可以通过简单的增加机器来扩展它的计算能力。</li>
-</ul>
-</li>
-<li><strong>高容错性</strong>：<ul>
-<li>MapReduce 设计的初衷就是使程序能够部署在廉价的 PC 机器上,这就要求它具有很高的容错性。比如其中一台机器挂了,它可以把上面的计算任务转移到另外一个节点上运行,不至于这个任务运行失败,而且这个过程不需要人工参与,而完全是由 Hadoop 内部完成的。</li>
-</ul>
-</li>
-<li><strong>适合 PB 级以上海量数据的离线处理</strong>：<ul>
-<li>可以实现上千台服务器集群并发工作,提供数据处理能力。</li>
-</ul>
-</li>
-</ul>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
-<li><p><strong>不擅长实时计算</strong></p>
-<ul>
-<li>MapReduce 无法像 MySQL 一样,在毫秒或者秒级内返回结果。</li>
-</ul>
-</li>
-<li><p><strong>不擅长流式计算</strong></p>
-<ul>
-<li>流式计算的输入数据是动态的,而 MapReduce 的输入数据集是静态的,不能动态变化。这是因为 MapReduce 自身的设计特点决定了数据源必须是静态的。</li>
-</ul>
-</li>
-<li><p><strong>不擅长 DAG(有向无环图)计算</strong></p>
-<ul>
-<li>多个应用程序存在依赖关系,后一个应用程序的输入为前一个的输出。在这种情况下,MapReduce 并不是不能做,而是使用后,每个 MapReduce 作业的输出结果都会写入到磁盘,会造成大量的磁盘 IO,导致性能非常的低下。</li>
-</ul>
-</li>
-</ul>
-<h2 id="MapReduce-on-YARN-工作机制"><a href="#MapReduce-on-YARN-工作机制" class="headerlink" title="MapReduce on YARN 工作机制"></a>MapReduce on YARN 工作机制</h2><blockquote>
-<p>[MapReduce 在 YARN 详细的过程](#Yarn 工作机制)</p>
-</blockquote>
-<p>一个完整的 MapReduce 程序在分布式运行时有三类实例进程:</p>
-<ol>
-<li>MRAppMaster:负责整个程序的过程调度及状态协调。</li>
-<li>MapTask:负责 Map 阶段的整个数据处理流程。</li>
-<li>ReduceTask:负责 Reduce 阶段的整个数据处理流程。</li>
-</ol>
-<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/MR-on-YARN.png"></p>
-<h2 id="MapReduce-进程"><a href="#MapReduce-进程" class="headerlink" title="MapReduce 进程"></a>MapReduce 进程</h2><p>一个完整的 MapReduce 程序在分布式运行时有三类实例进程:</p>
-<ul>
-<li>MrAppMaster:负责整个程序的过程调度及状态协调。8</li>
-<li>MapTask:负责 Map 阶段的整个数据处理流程。</li>
-<li>ReduceTask:负责 Reduce 阶段的整个数据处理流程。</li>
-</ul>
-<h2 id="MR演示计算模型"><a href="#MR演示计算模型" class="headerlink" title="MR演示计算模型"></a>MR演示计算模型</h2><p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/MR%E6%BC%94%E7%A4%BA%E8%AE%A1%E7%AE%97%E6%A8%A1%E5%9E%8B.png" alt="MR演示计算模型.png"></p>
-<ol>
-<li>MapReduce运算程序一般需要分成2个阶段:Map阶段和Reduce阶段</li>
-<li>Map阶段的并发MapT ask,完全并行运行,互不相干</li>
-<li>第二个阶段的 ReduceTask 并发实例互不相干,但是他们的数据依赖于上一个阶段的所有 MapTask 并发实例的输出。</li>
-<li>MapReduce 编程模型只能包含一个 Map 阶段和一个 Reduce 阶段,如果用户的业务逻辑非常复杂,那就只能多个 MapReduce 程序,串行运行。</li>
-</ol>
-<h2 id="InputFormat-数据输入"><a href="#InputFormat-数据输入" class="headerlink" title="InputFormat 数据输入"></a>InputFormat 数据输入</h2><h3 id="切片与-MapTask-并行度决定机制"><a href="#切片与-MapTask-并行度决定机制" class="headerlink" title="切片与 MapTask 并行度决定机制"></a>切片与 MapTask 并行度决定机制</h3><ul>
-<li>MapTask 的并行度决定 Map 阶段的任务处理并发度,进而影响到整个 Job 的处理速度。</li>
-<li>数据块:Block 是 HDFS 物理上把数据分成一块一块。数据块是 HDFS 存储数据单位。</li>
-<li>数据切片:数据切片只是在逻辑上对输入进行分片，是一个分片长度和一个记录数据位置的数组,并不会在磁盘上将其切分成片进行存储。数据切片是 MapReduce 程序计算输入数据的单位,一切片会对应启动一个MapTask。</li>
-</ul>
-<h3 id="分片机制"><a href="#分片机制" class="headerlink" title="分片机制"></a>分片机制</h3><p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/%E5%88%86%E7%89%87.png" alt="分片.png"></p>
-<ul>
-<li>一个Job的Map阶段并行度由客户端在提交Job时的切片数决定</li>
-<li>每一个Split切片分配一个MapTask并行实例处理</li>
-<li>默认情况下,切片大小&#x3D;BlockSize</li>
-<li>切片时不考虑数据集整体,而是逐个针对每一个文件单独切片</li>
-</ul>
-<p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/%E6%AF%8F%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E5%8D%95%E7%8B%AC%E5%88%87%E7%89%87.png" alt="每一个文件单独切片"></p>
-<h2 id="Map——-gt-Shuffle"><a href="#Map——-gt-Shuffle" class="headerlink" title="Map——&gt;Shuffle"></a>Map——&gt;Shuffle</h2><p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/map-suffle.png" alt="map-suffle"></p>
-<p>1.规划阶段<br>客户端submit()前，根据配置信息形成一个任务分配规划，即切片规划；submit()提交首先验证输入输出路径，提交切片信息、jar包(集群模式会提交，本地模式不会提交)、配置文件等；根据切片数计算需要起MapTask的个数</p>
-<p>2.Read 阶段<br>MapTask通过RecordReader逻辑从输入的InputSplit中解析出一个个key-value，自定义InputFormat将在这里调用</p>
-<p>3.Map 阶段<br>将解析出的key-value交给自定义的map()函数，并产生一系列新的key-value</p>
-<p>4.Collect 阶段<br>context.write()后内部会调用OutPutCollectior.collect()输出，并调用分区函数（默认HashPartitioner）对key进行分区后写入一个环形内存缓冲区中</p>
-<h2 id="Shuffle"><a href="#Shuffle" class="headerlink" title="Shuffle"></a>Shuffle</h2><p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/image-20221026175208824.png" alt="image-20221026175208824"></p>
-<p>​        map()之后reduce()之前的所有MapTask和ReduceTask工作流程称为shuffle</p>
-<p>​        map()的context.write()提交数据到collector（收集器），collector通过调用collect()对数据进行操作包括调用Partitioner的分区方法（默认HashPartitioner可自定义）根据k对kv进行分区后写入环形缓冲区（抽象概念本质是一个字节数据）当写入的数据达到环形缓冲区大小的80%触发溢写线程，线程启动后先对这80%的内存先按照分区数排序每个分区内单独按照key进行排序（快速排序），若检测到有Combiner则调用最终一次溢写生成一个临时文件，当map()方法结束MapTask对所有的溢写临时文件再次进行归并排序，若检测到Combiner则调用最终一个MapTask输出一个文件等待ReduceTask拉取。</p>
-<p>​        当所有的MapTask结束后启动ReduceTask，ReduceTask根据自己的编号去对应的分区拉取数据到内存，若数据过多也会触发溢写操作，将数据写到磁盘，在拉取数据的过程中ReduceTask同时启动两个后台线程对内存数据和磁盘文件进行合并，最终对所有文件进行归并排序，若监测到Combiner则调用，最终根据key的不同将数据发送给reduce()</p>
-<h2 id="Shuffle——-gt-Reduce"><a href="#Shuffle——-gt-Reduce" class="headerlink" title="Shuffle——&gt;Reduce"></a>Shuffle——&gt;Reduce</h2><p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/suffle-reduce.png" alt="suffle-reduce"></p>
-<p>1.Copy 阶段<br>简单地拉取数据ReduceTask根据自己的编号去对应的分区拉取数据到内存，如果数据过大超过内存数也会触发溢写操作，将数据写到磁盘中</p>
-<p>2.Merge 阶段<br>和Copy阶段同时进行，ReduceTask会启动连个线程对内存和磁盘数据进行合并，方式内存使用过多和磁盘磁盘文件太多</p>
-<p>3.Sort 阶段<br>把分散的数据文件再次合并成一个大文件，再进行一次归并排序</p>
-<p>4.Reduce 阶段<br>reduce()将计算结果写到HDFS上</p>
-<h1 id="资料参考"><a href="#资料参考" class="headerlink" title="资料参考"></a>资料参考</h1><p><a href="https://hadoop.apache.org/">Hadoop官网</a></p>
-<p><a href="https://weread.qq.com/web/bookDetail/fbf3275072037f1afbfd830">Hadoop集群程序设计与开发（王宏志、李春静）</a></p>
-<p><a href="https://blog.csdn.net/skylibiao/article/details/85713246">yarn工作原理</a></p>
-<p><a href="https://www.jianshu.com/p/25788c6caf49">YARN Capacity Scheduler（容量调度器）</a></p>
-<p><a href="https://blog.csdn.net/u012369535/article/details/87916298#t1">MapReduce工作原理详解（学习笔记）</a></p>
-<p><a href="https://blog.csdn.net/yumi6666/article/details/82526276">MapReduce中FileInputFormat的文件切片机制</a></p>
-<p><a href="https://kpretty.tech/archives/hadoop#12-hadoop-%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F">Hadoop 核心原理</a></p>
-<p><a href="https://cloud.tencent.com/developer/article/2021745">RPC框架</a></p>
-<p><a href="https://www.cnblogs.com/edisonchou/p/4285817.html">Hadoop RPC机制的使用 </a></p>
-<p><a href="https://www.bilibili.com/video/BV1Qp4y1n7EN/?spm_id_from=333.337.search-card.all.click&vd_source=5b52366bc13268f3533facca1424684b">Hadoop尚硅谷</a></p>
-]]></content>
-      <categories>
-        <category>大数据</category>
-        <category>Hadoop</category>
-      </categories>
-      <tags>
-        <tag>基础知识</tag>
       </tags>
   </entry>
 </search>
