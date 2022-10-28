@@ -1039,7 +1039,7 @@
 <p><img src="/./Hadoop%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/MR-on-YARN.png"></p>
 <h2 id="MapReduce-进程"><a href="#MapReduce-进程" class="headerlink" title="MapReduce 进程"></a>MapReduce 进程</h2><p>一个完整的 MapReduce 程序在分布式运行时有三类实例进程:</p>
 <ul>
-<li>MrAppMaster:负责整个程序的过程调度及状态协调。8</li>
+<li>MrAppMaster:负责整个程序的过程调度及状态协调。</li>
 <li>MapTask:负责 Map 阶段的整个数据处理流程。</li>
 <li>ReduceTask:负责 Reduce 阶段的整个数据处理流程。</li>
 </ul>
